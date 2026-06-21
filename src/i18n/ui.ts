@@ -21,9 +21,9 @@ const en = {
   tagline: 'Design and code, in the same hands.',
 
   hero: {
-    lineA: 'I design & build',
-    lineB: 'websites & web apps.',
-    sub: 'I’m Andreas — one developer taking your idea from first sketch to launch: websites, online shops, dashboards and prototypes.',
+    lineA: 'One developer.',
+    lineB: 'Design & code.',
+    sub: 'I’m Andreas — I take your idea from first sketch to launch: web apps, dashboards, internal tools and prototypes.',
     caption: 'Fig. 01 — Frontend, end to end',
   },
 
@@ -32,12 +32,14 @@ const en = {
     years: 'Years',
     lead: 'One developer — design and build, start to finish.',
     body:
-      'Ten years building websites and web apps — fast, accessible, and easy to grow. You get design and development from one person, with no agency overhead and no handoff in between.',
+      'Ten years building web apps and products — fast, accessible, and easy to grow. You get design and development from one person, with no agency overhead and no handoff in between.',
+    aside: 'On the side, I built a speech therapist’s website as a family & friends project.',
+    asideCta: 'See it ↗',
   },
 
   services: {
     eyebrow: 'Services',
-    title: 'What I build for you.',
+    title: 'What I build with you.',
   },
 
   capabilities: { label: 'Stack' },
@@ -46,6 +48,7 @@ const en = {
     eyebrow: 'Process',
     title: 'How it works.',
     intro: 'A small first step, then a clear path — no surprises.',
+    caption: 'Fig. 02 — a clear path',
   },
 
   journey: { eyebrow: 'Journey', title: 'Ten years building software.' },
@@ -72,6 +75,7 @@ const en = {
     paint: 'first paint',
     top: 'Top',
     homeAria: 'WyroTech — home',
+    statement: 'Let’s build something worth keeping.',
   },
 
   caseStudy: {
@@ -96,9 +100,9 @@ const en = {
   legal: { back: 'Back home', updated: 'Stand:' },
 
   meta: {
-    homeTitle: 'WyroTech — Websites, Web Apps & Online Shops',
+    homeTitle: 'Web Developer Deggendorf · B2B Web Apps & SaaS | WyroTech',
     homeDescription:
-      'Custom websites, web apps and online shops — designed and built by one developer, end to end. Angular, React, TypeScript. Andreas Wyrobek, Deggendorf (10+ yrs).',
+      'Andreas Wyrobek — web developer in Deggendorf. I design & build B2B web apps, dashboards, SaaS & design systems in Angular, React, .NET & Azure. DE/EN.',
     notFoundTitle: 'Not found — WyroTech',
     notFoundDescription: 'This page could not be found.',
   },
@@ -122,9 +126,9 @@ const de: Ui = {
   tagline: 'Design und Code, aus einer Hand.',
 
   hero: {
-    lineA: 'Ich gestalte & entwickle',
-    lineB: 'Websites & Web-Apps.',
-    sub: 'Ich bin Andreas – ein Entwickler, der Ihre Idee von der ersten Skizze bis zum Launch bringt: Websites, Online-Shops, Dashboards und Prototypen.',
+    lineA: 'Ein Entwickler.',
+    lineB: 'Design & Code.',
+    sub: 'Ich bin Andreas – ich bringe Ihre Idee von der ersten Skizze bis zum Launch: Web-Apps, Dashboards, interne Tools und Prototypen.',
     caption: 'Abb. 01 – Frontend, durchgängig',
   },
 
@@ -133,12 +137,14 @@ const de: Ui = {
     years: 'Jahre',
     lead: 'Ein Entwickler – Design und Umsetzung, von Anfang bis Ende.',
     body:
-      'Zehn Jahre Erfahrung mit Websites und Web-Apps – schnell, barrierefrei und einfach erweiterbar. Sie erhalten Design und Entwicklung aus einer Hand, ohne Agentur-Overhead und ohne Übergaben dazwischen.',
+      'Zehn Jahre Erfahrung mit Web-Apps und Produkten – schnell, barrierefrei und einfach erweiterbar. Sie erhalten Design und Entwicklung aus einer Hand, ohne Agentur-Overhead und ohne Übergaben dazwischen.',
+    aside: 'Nebenbei habe ich als Projekt für Familie & Freunde die Website einer Logopädin gebaut.',
+    asideCta: 'Ansehen ↗',
   },
 
   services: {
     eyebrow: 'Leistungen',
-    title: 'Was ich für Sie baue.',
+    title: 'Was ich mit Ihnen baue.',
   },
 
   capabilities: { label: 'Stack' },
@@ -147,6 +153,7 @@ const de: Ui = {
     eyebrow: 'Ablauf',
     title: 'So läuft es ab.',
     intro: 'Ein kleiner erster Schritt, dann ein klarer Weg – ohne Überraschungen.',
+    caption: 'Abb. 02 – ein klarer Weg',
   },
 
   journey: { eyebrow: 'Werdegang', title: 'Zehn Jahre Softwareentwicklung.' },
@@ -173,6 +180,7 @@ const de: Ui = {
     paint: 'First Paint',
     top: 'Nach oben',
     homeAria: 'WyroTech – Startseite',
+    statement: 'Bauen wir etwas, das bleibt.',
   },
 
   caseStudy: {
@@ -197,9 +205,9 @@ const de: Ui = {
   legal: { back: 'Zur Startseite', updated: 'Stand:' },
 
   meta: {
-    homeTitle: 'WyroTech — Websites, Web-Apps & Online-Shops',
+    homeTitle: 'Webentwickler Deggendorf · B2B Web-Apps & SaaS | WyroTech',
     homeDescription:
-      'Individuelle Websites, Web-Apps und Online-Shops – von einem Entwickler gestaltet und gebaut, durchgängig. Angular, React, TypeScript. Andreas Wyrobek, Deggendorf (10+ J.).',
+      'Andreas Wyrobek – Webentwickler in Deggendorf. Ich designe & entwickle B2B-Web-Apps, Dashboards, SaaS & Design-Systeme in Angular, React, .NET & Azure. DE/EN.',
     notFoundTitle: 'Nicht gefunden — WyroTech',
     notFoundDescription: 'Diese Seite konnte nicht gefunden werden.',
   },

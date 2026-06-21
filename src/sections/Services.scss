@@ -67,8 +67,12 @@
 }
 
 .service__blurb {
-  max-width: 50ch;
-  color: var(--fg-soft);
+  /* readability: a tighter measure, explicit comfortable size + leading, and a
+     brighter tone than --fg-soft (which read too dim on the dark surface) */
+  max-width: 42ch;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: color-mix(in srgb, var(--fg) 82%, var(--bg));
 }
 
 .service__list {

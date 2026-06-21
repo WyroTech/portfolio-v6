@@ -29,6 +29,10 @@ import {
   siOdoo,
   siJetbrains,
   siElasticsearch,
+  siAstro,
+  siGraphql,
+  siGithub,
+  siNestjs,
 } from 'simple-icons'
 import './TechIcon.scss'
 
@@ -69,7 +73,13 @@ const ICONS: Record<string, SimpleIcon> = {
   Odoo: siOdoo,
   JetBrains: siJetbrains,
   Elasticsearch: siElasticsearch,
-  // OpenAI and SQL Server have no trademark-safe Simple Icons glyph → monogram fallback.
+  Astro: siAstro,
+  GraphQL: siGraphql,
+  GitHub: siGithub,
+  NestJS: siNestjs,
+  // No trademark-safe / consistent Simple Icons glyph (→ monogram fallback): OpenAI,
+  // SQL Server, Playwright, Vitest, REST, gRPC, WebSocket, Webhooks, SignalR, AWS,
+  // Azure, Azure DevOps.
 }
 
 // Logos that are wordmarks (already spell the name) → show glyph only, no label.

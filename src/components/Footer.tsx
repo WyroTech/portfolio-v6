@@ -16,20 +16,21 @@ export default function Footer() {
 
   return (
     <footer className="footer" id="contact-foot">
-      <div className="container footer__grid">
-        <div className="footer__brand">
-          <Link to={home} className="footer__mark" aria-label={t.footer.homeAria}>
-            {site.brand}
-          </Link>
+      <div className="container footer__statement">
+        <p className="footer__statement-line">{t.footer.statement}</p>
+        <p className="footer__statement-avail t-label">{t.availability.short}</p>
+      </div>
+
+      <div className="container footer__grid footer__grid--ruled">
+        <div className="footer__brand footer__cell">
           <p className="footer__tagline t-muted">{t.tagline}</p>
           <a className="footer__cta" href={`mailto:${site.email}`}>
-            <span className="footer__cta-split" data-text={t.footer.cta} aria-hidden="true" />
             <span className="footer__cta-text">{t.footer.cta}</span> &rarr;
           </a>
           <span className="footer__reply t-label">{t.footer.reply}</span>
         </div>
 
-        <nav className="footer__col" aria-label="Footer">
+        <nav className="footer__col footer__cell" aria-label="Footer">
           <span className="t-label footer__col-label">{t.footer.index}</span>
           {site.nav.map((item) => (
             <Link key={item.key} to={`${home}${item.hash}`}>
@@ -38,7 +39,7 @@ export default function Footer() {
           ))}
         </nav>
 
-        <div className="footer__col">
+        <div className="footer__col footer__cell">
           <span className="t-label footer__col-label">{t.footer.elsewhere}</span>
           {site.social.map((s) => (
             <a
@@ -51,6 +52,10 @@ export default function Footer() {
             </a>
           ))}
         </div>
+      </div>
+
+      <div className="footer__wordmark">
+        <span className="footer__wordmark-text" aria-hidden="true">{site.brand}</span>
       </div>
 
       <div className="container footer__base">

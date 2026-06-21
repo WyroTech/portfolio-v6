@@ -11,11 +11,13 @@ export const techCategories: TechCategory[] = [
     en: 'Frontend',
     de: 'Frontend',
     items: [
+      'Angular',
       'TypeScript',
       'JavaScript',
+      'HTML5',
       'React',
       'Next.js',
-      'Angular',
+      'Astro',
       'Tailwind',
       'Sass',
       'Figma',
@@ -28,14 +30,15 @@ export const techCategories: TechCategory[] = [
     items: ['OpenAI', 'Claude'],
   },
   {
-    en: 'Backend & APIs',
-    de: 'Backend & APIs',
+    en: 'Backend & Databases',
+    de: 'Backend & Datenbanken',
     items: [
       '.NET',
       'C#',
       'ASP.NET Core',
       'EF Core',
       'Node.js',
+      'NestJS',
       'Python',
       'PostgreSQL',
       'SQL Server',
@@ -43,13 +46,18 @@ export const techCategories: TechCategory[] = [
     ],
   },
   {
+    en: 'APIs & Realtime',
+    de: 'APIs & Realtime',
+    items: ['REST', 'GraphQL', 'gRPC', 'WebSocket', 'Webhooks', 'SignalR'],
+  },
+  {
     en: 'Cloud & DevOps',
     de: 'Cloud & DevOps',
-    items: ['Azure', 'Docker'],
+    items: ['Azure', 'AWS', 'Docker'],
   },
   {
     en: 'Tooling',
     de: 'Tooling',
-    items: ['Git', 'JetBrains', 'ClickUp', 'Odoo'],
+    items: ['Git', 'GitHub', 'Azure DevOps', 'JetBrains', 'Vitest', 'Playwright', 'ClickUp', 'Odoo'],
   },
 ]

@@ -1,26 +1,54 @@
 .footer {
   background: var(--bg);
   color: var(--fg);
-  border-top: 1px solid var(--hairline);
-  padding-top: clamp(3rem, 8vw, 6rem);
+  border-top: 1px solid var(--hairline); /* opening hairline */
+  padding-top: 0; /* the statement band owns the top now */
 }
 
+/* ── 1 — STATEMENT: an oversized closing line opens the footer ───── */
+.footer__statement {
+  padding-top: clamp(2.5rem, 7vw, 5rem);
+  padding-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.footer__statement-line {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  /* confident, but kept below the hero headline so the masthead stays the
+     largest mark in the footer */
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: var(--ls-heading);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.footer__statement-avail {
+  display: block;
+  margin-top: var(--space-5);
+  color: var(--c-mute);
+}
+
+/* ── 2 — COLOPHON GRID ──────────────────────────────────────────── */
 .footer__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(3rem, 7vw, 5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
-.footer__mark {
-  font-family: var(--font-display);
-  font-weight: var(--wght-display-mid);
-  font-size: clamp(2rem, 6vw, 3rem);
-  letter-spacing: -0.02em;
+/* the grid sits under the statement, so give it its own opening rule */
+.footer__grid--ruled {
+  border-top: 1px solid var(--hairline);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.footer__cell {
+  position: relative;
 }
 
 .footer__tagline {
-  margin-top: var(--space-3);
+  margin-top: 0;
   max-width: 30ch;
 }
 
@@ -54,57 +82,10 @@
   transform: scaleX(0);
 }
 
-/* Clip-path two-layer split on the label (matches Contact email).
-   Scoped to the text only — the trailing arrow stays put. */
+/* the label stays fully readable; the underline retracts on hover (above) */
 .footer__cta-text {
   position: relative;
   display: inline-block;
-  transition: opacity var(--dur-fast) var(--ease-out);
-}
-
-.footer__cta-split {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: max-content;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity var(--dur-fast) var(--ease-out);
-}
-
-.footer__cta-split::before,
-.footer__cta-split::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  transition: transform var(--dur) cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.footer__cta-split::before {
-  clip-path: inset(0 0 50% 0);
-}
-
-.footer__cta-split::after {
-  clip-path: inset(50% 0 0 0);
-}
-
-.footer__cta:hover .footer__cta-text,
-.footer__cta:focus-visible .footer__cta-text {
-  opacity: 0;
-}
-
-.footer__cta:hover .footer__cta-split,
-.footer__cta:focus-visible .footer__cta-split {
-  opacity: 1;
-}
-
-.footer__cta:hover .footer__cta-split::before,
-.footer__cta:focus-visible .footer__cta-split::before {
-  transform: translateY(-0.12em);
-}
-
-.footer__cta:hover .footer__cta-split::after,
-.footer__cta:focus-visible .footer__cta-split::after {
-  transform: translateY(0.12em);
 }
 
 .footer__reply {
@@ -211,9 +192,49 @@
   color: var(--fg);
 }
 
+/* ── 3 — MASTHEAD WORDMARK: the closing signature ───────────────── */
+.footer__wordmark {
+  border-top: 1px solid var(--hairline); /* the memorable closing rule */
+  /* a real gap below the mark so it never collides with the imprint bar */
+  padding-block: clamp(1rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1.25rem);
+  overflow: clip; /* overshoot never causes horizontal scroll */
+}
+
+.footer__wordmark-text {
+  display: block;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  /* the band runs to the viewport edge, but the text aligns to the same gutter as
+     .container so it reads as a deliberate masthead, not an accidental stretch */
+  padding-inline: var(--container-pad);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  /* the largest mark on the page, but tempered just under --fs-display so it
+     reads as a confident signature rather than overflowing the band */
+  font-size: clamp(2.75rem, 8.5vw, 7.5rem);
+  line-height: 0.92; /* contains the glyphs (incl. the "y" descender) cleanly */
+  letter-spacing: var(--ls-display);
+  white-space: nowrap; /* one line; scales down via the clamp on small screens */
+}
+
 @media (min-width: 768px) {
   .footer__grid {
     grid-template-columns: 1.6fr 1fr 1fr;
+  }
+  /* vertical hairlines between the colophon columns (desktop only) */
+  .footer__grid--ruled .footer__cell + .footer__cell {
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+  }
+  .footer__grid--ruled .footer__cell + .footer__cell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--hairline);
   }
   .footer__base {
     flex-direction: row;
@@ -225,15 +246,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* CTA split: halves stay merged & hidden, selectable text never fades.
-     Underline keeps its own reduced-motion-safe behaviour. */
-  .footer__cta-text {
-    opacity: 1 !important;
-    transition: none;
-  }
-  .footer__cta-split {
-    display: none;
-  }
   /* Arrow-wipe: arrow renders in final position, label not translated. */
   .footer__col a {
     padding-left: 1.4em;
@@ -242,6 +254,10 @@
   .footer__col a::before {
     opacity: 1;
     transform: translate(0, -50%);
+    transition: none;
+  }
+  /* masthead wordmark: no fade */
+  .footer__wordmark-text {
     transition: none;
   }
 }

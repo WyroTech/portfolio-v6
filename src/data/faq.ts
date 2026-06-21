@@ -16,12 +16,16 @@ const en: Qa[] = [
     a: 'You get a clear price before we start — not a surprise at the end. We agree on what you need, I give you a fixed price for it, and you always know what you\'re paying for.',
   },
   {
-    q: 'Will the website be mine?',
-    a: 'Yes — completely. Once it\'s built and paid for, the site and the files are yours, and nothing is tied to me. You\'re free to hand it to any other developer later.',
+    q: 'Will the project be mine?',
+    a: 'Yes — completely. Once it\'s built and paid for, the product and the source are yours, and nothing is tied to me. You\'re free to hand it to any other developer later.',
   },
   {
-    q: 'Can one person really handle it?',
-    a: 'I do the design and the build myself, so you have one person to talk to from the first idea to launch — no being passed between a designer and a developer. For anything beyond that, like more involved server work, I bring in people I trust and tell you up front where that line is.',
+    q: 'Can you work with our existing team and code?',
+    a: 'Yes. I can pick up an existing codebase and work alongside your team — your stack, your conventions — or build it greenfield. Either way you get clean, documented code your team can own.',
+  },
+  {
+    q: 'What happens after launch?',
+    a: 'I don\'t disappear at launch. I can stay on for fixes, iterations and new features, or hand off cleanly with documentation so your team takes over — your call.',
   },
   {
     q: 'Not sure what you need yet?',
@@ -35,12 +39,16 @@ const de: Qa[] = [
     a: 'Sie erhalten einen klaren Preis, bevor wir beginnen – keine Überraschung am Ende. Wir klären gemeinsam, was Sie brauchen, ich nenne Ihnen dafür einen Festpreis, und Sie wissen jederzeit, wofür Sie bezahlen.',
   },
   {
-    q: 'Gehört die Website mir?',
-    a: 'Ja – vollständig. Sobald sie erstellt und bezahlt ist, gehören die Website und die Dateien Ihnen, und nichts ist an mich gebunden. Sie können sie später jederzeit an eine andere Entwicklerin oder einen anderen Entwickler übergeben.',
+    q: 'Gehört das Projekt mir?',
+    a: 'Ja – vollständig. Sobald es erstellt und bezahlt ist, gehören das Produkt und der Quellcode Ihnen, und nichts ist an mich gebunden. Sie können es später jederzeit an eine andere Entwicklerin oder einen anderen Entwickler übergeben.',
   },
   {
-    q: 'Schafft das wirklich eine Person allein?',
-    a: 'Gestaltung und Umsetzung mache ich selbst, sodass Sie von der ersten Idee bis zum Launch eine feste Ansprechperson haben – kein Hin und Her zwischen Design und Entwicklung. Für alles darüber hinaus, etwa aufwendigere Server-Arbeit, hole ich Leute hinzu, denen ich vertraue, und sage Ihnen vorab, wo diese Grenze liegt.',
+    q: 'Arbeiten Sie auch mit unserem Team und Code?',
+    a: 'Ja. Ich kann eine bestehende Codebasis übernehmen und mit Ihrem Team arbeiten – Ihr Stack, Ihre Konventionen – oder von Grund auf neu bauen. So oder so erhalten Sie sauberen, dokumentierten Code, der Ihrem Team gehört.',
+  },
+  {
+    q: 'Was passiert nach dem Launch?',
+    a: 'Mit dem Launch ist nicht Schluss. Ich bleibe für Fixes, Iterationen und neue Features an Bord oder übergebe sauber mit Dokumentation, damit Ihr Team übernimmt – ganz wie Sie möchten.',
   },
   {
     q: 'Noch unklar, was Sie brauchen?',

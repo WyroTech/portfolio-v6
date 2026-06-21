@@ -9,66 +9,66 @@ export interface Service {
 const en: Service[] = [
   {
     no: '01',
-    title: 'Custom website',
-    blurb: 'A fast, polished website that fits your brand — designed and built end to end, ready to launch.',
+    title: 'Web app or platform',
+    blurb: 'A custom web application built around your processes, your data and your users — including AI features when you need them.',
   },
   {
     no: '02',
-    title: 'Web app or dashboard',
-    blurb: 'A custom web app or dashboard for your business — including AI features when you need them.',
+    title: 'Dashboards & data tools',
+    blurb: 'Dense data made clear and usable — analytics, admin panels and internal tools your team actually wants to use.',
   },
   {
     no: '03',
-    title: 'Online shop',
-    blurb: 'An online shop your customers enjoy using and that turns visitors into buyers.',
+    title: 'SaaS product',
+    blurb: 'From first concept to a scalable, production SaaS — product thinking, UX and engineering from one person.',
   },
   {
     no: '04',
-    title: 'Redesign or relaunch',
-    blurb: 'A tired site rebuilt — faster and modern, keeping your content and your Google ranking.',
+    title: 'Design system',
+    blurb: 'A component library and design system so every team ships consistent, on-brand UI — without the drift.',
   },
   {
     no: '05',
-    title: 'Prototype or MVP',
-    blurb: 'A working first version of your idea, fast — enough to test, demo, and raise money.',
+    title: 'Frontend modernization',
+    blurb: 'A legacy or tired frontend rebuilt in Angular or React — faster, accessible and easy to maintain.',
   },
   {
     no: '06',
-    title: 'Performance & SEO',
-    blurb: 'A site that loads fast and gets found on Google — the technical basics done right.',
+    title: 'Prototype or MVP',
+    blurb: 'A working first version of your idea — enough to test with users, demo to stakeholders and raise.',
   },
 ]
 
 const de: Service[] = [
   {
     no: '01',
-    title: 'Individuelle Website',
-    blurb: 'Eine schnelle, hochwertige Website passend zu Ihrer Marke – durchgängig gestaltet, gebaut und startklar.',
+    title: 'Web-App oder Plattform',
+    blurb: 'Eine maßgeschneiderte Web-Anwendung rund um Ihre Prozesse, Ihre Daten und Ihre Nutzer – auf Wunsch mit KI-Funktionen.',
   },
   {
     no: '02',
-    title: 'Web-App oder Dashboard',
-    blurb: 'Eine maßgeschneiderte Web-App oder ein Dashboard für Ihr Unternehmen – auf Wunsch mit KI-Funktionen.',
+    title: 'Dashboards & Datentools',
+    blurb: 'Dichte Daten klar und nutzbar gemacht – Analysen, Admin-Bereiche und interne Tools, die Ihr Team gern verwendet.',
   },
   {
     no: '03',
-    title: 'Online-Shop',
-    blurb: 'Ein Online-Shop, den Ihre Kunden gern nutzen und der Besucher zu Käufern macht.',
+    title: 'SaaS-Produkt',
+    blurb: 'Vom ersten Konzept zu einem skalierbaren, produktiven SaaS – Produktdenken, UX und Entwicklung aus einer Hand.',
   },
   {
     no: '04',
-    title: 'Redesign oder Relaunch',
-    blurb: 'Ein in die Jahre gekommener Auftritt, neu gebaut – schneller und modern, mit Ihren Inhalten und Ihrem Google-Ranking.',
+    title: 'Designsystem',
+    blurb: 'Eine Komponentenbibliothek und ein Designsystem, damit jedes Team konsistente, markentreue UI ausliefert – ohne Abweichung.',
   },
   {
     no: '05',
-    title: 'Prototyp oder MVP',
-    blurb: 'Eine funktionierende erste Version Ihrer Idee – schnell genug zum Testen, Vorführen und Pitchen.',
+    title: 'Frontend-Modernisierung',
+    blurb: 'Ein veraltetes Frontend, neu gebaut in Angular oder React – schneller, barrierefrei und wartbar.',
   },
   {
     no: '06',
-    title: 'Performance & SEO',
-    blurb: 'Eine Website, die schnell lädt und bei Google gefunden wird – die technische Basis sauber umgesetzt.',
+    title: 'Prototyp oder MVP',
+    blurb: 'Eine funktionierende erste Version Ihrer Idee – genug zum Testen mit Nutzern, Vorführen und Pitchen.',
   },
 ]
 

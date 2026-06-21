@@ -1,9 +1,53 @@
+/* steps on the left, a framed generative-art plate on the right — the plate
+   fills what used to be an empty desktop column and echoes the hero/work art */
+.process-layout {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
 .proc-path {
   display: flex;
   flex-direction: column;
-  margin-top: clamp(2rem, 5vw, 3.5rem);
   --proc-gap: clamp(2.25rem, 5vw, 3.75rem);
   --proc-node: clamp(2.5rem, 5vw, 3rem);
+}
+
+/* decorative right column — hidden on small screens (steps stand alone there) */
+.process-aside {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .process-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    column-gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .process-aside {
+    display: block;
+  }
+
+  /* track the steps as they scroll past, so the plate stays in view */
+  .process-aside__inner {
+    position: sticky;
+    top: clamp(6rem, 16vh, 10rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .process-aside__plate {
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+
+  .process-aside__cap {
+    color: var(--c-mute);
+  }
 }
 
 .proc {
@@ -82,13 +126,16 @@
 }
 
 .proc__body {
-  padding-top: calc((var(--proc-node) - 1.2em) / 2);
+  /* centre the title's FIRST LINE on the node — use the title's real line box
+     (fs-h3 × its line-height), not a body-em guess, so the index lines up */
+  padding-top: calc((var(--proc-node) - var(--fs-h3) * 1.15) / 2);
 }
 
 .proc__title {
   font-family: var(--font-display);
   font-weight: var(--wght-display);
   font-size: var(--fs-h3);
+  line-height: 1.15;
   letter-spacing: var(--ls-heading);
 }
 

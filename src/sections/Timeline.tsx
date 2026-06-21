@@ -22,7 +22,10 @@ export default function Timeline() {
             <span className="tl__period t-mono">{role.period}</span>
             <div className="tl__main">
               <h3 className="tl__title">{role.title}</h3>
-              <span className="tl__org t-muted">{role.org}</span>
+              <span className="tl__org t-muted">
+                {role.org}
+                {role.location ? ` · ${role.location}` : ''}
+              </span>
               {role.points && role.points.length > 0 && (
                 <ul className="tl__points">
                   {role.points.map((point) => (
