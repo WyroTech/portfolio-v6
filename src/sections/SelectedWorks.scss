@@ -1,7 +1,9 @@
 .works-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--grid-gap);
+  /* more air between cards than the tight --grid-gap, so each bordered card
+     reads as its own object and the grid stays easy to scan */
+  gap: clamp(1.5rem, 3.5vw, 3rem);
 }
 
 .works-grid__item {

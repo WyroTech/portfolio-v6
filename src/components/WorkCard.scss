@@ -58,7 +58,9 @@
 }
 
 .work-card--featured .work-card__thumb {
-  aspect-ratio: 24 / 9;
+  /* a restrained wide banner — shorter than before so the featured card
+     leads the grid without dwarfing the standard cards beneath it */
+  aspect-ratio: 32 / 9;
 }
 
 .work-card__top {
@@ -97,7 +99,9 @@
 }
 
 .work-card--featured .work-card__title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  /* larger than a standard card (--fs-h3 tops out at 2.25rem) but no longer the
+     5rem giant the owner flagged as "too huge" */
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
 /* keep featured text rows left-constrained so the wide card has no middle void */

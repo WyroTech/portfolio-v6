@@ -27,6 +27,8 @@ import {
   siClaude,
   siClickup,
   siOdoo,
+  siJetbrains,
+  siElasticsearch,
 } from 'simple-icons'
 import './TechIcon.scss'
 
@@ -65,7 +67,9 @@ const ICONS: Record<string, SimpleIcon> = {
   Claude: siClaude,
   ClickUp: siClickup,
   Odoo: siOdoo,
-  // OpenAI has no trademark-safe Simple Icons glyph → monogram fallback.
+  JetBrains: siJetbrains,
+  Elasticsearch: siElasticsearch,
+  // OpenAI and SQL Server have no trademark-safe Simple Icons glyph → monogram fallback.
 }
 
 // Logos that are wordmarks (already spell the name) → show glyph only, no label.

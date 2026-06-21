@@ -160,55 +160,6 @@ const en: Work[] = [
     results: ['A working real-time control system across the full hardware/software stack.'],
     link: { label: 'View on GitHub', href: 'https://github.com/WyroTech/RoboCar' },
   },
-  {
-    slug: 'wyro-tech-portfolio',
-    title: 'wyro.tech — Angular Portfolio',
-    client: 'Personal',
-    year: '2026',
-    role: 'Frontend Engineer & Designer',
-    category: 'Web · Portfolio',
-    stack: ['Angular', 'Tailwind CSS', 'GSAP', 'Transloco', 'Vercel'],
-    visual: 'contours',
-    metric: { value: 'CI-gated', label: 'a11y + Lighthouse on every PR' },
-    summary:
-      'A cinematic Angular 20 portfolio, built with Tailwind v4 and GSAP, localized with Transloco and statically prerendered on Vercel.',
-    outcome: 'A portfolio where every PR has to pass a11y and Lighthouse before it can merge.',
-    problem:
-      'Build a fast, animated, bilingual portfolio that stays accessible and performant as it grows — and prove it on every change, not just at launch.',
-    approach: [
-      'Built the site in Angular 20 with Tailwind v4 for styling.',
-      'Used GSAP for the cinematic, scroll-driven motion.',
-      'Localized the interface with Transloco and prerendered statically for Vercel.',
-      'Gated every pull request behind a CI pipeline: build, bundle budget, smoke test, accessibility and a mobile Lighthouse run.',
-    ],
-    results: [
-      'A bilingual, animated portfolio with a strict performance and accessibility budget.',
-      'Quality enforced automatically — no regression ships without passing the gate.',
-    ],
-    link: { label: 'View on GitHub', href: 'https://github.com/WyroTech/wyro-tech' },
-  },
-  {
-    slug: 'wyrotech-astro-portfolio',
-    title: 'WyroTech — Astro Portfolio',
-    client: 'Personal',
-    year: '2025',
-    role: 'Full-Stack Developer',
-    category: 'Web · Portfolio',
-    stack: ['Astro', 'TypeScript', 'CSS'],
-    visual: 'flow',
-    metric: { value: 'static', label: 'Astro site shipped on Vercel' },
-    summary:
-      'An earlier personal portfolio built with Astro and TypeScript — a fast, content-first static site deployed on Vercel.',
-    outcome: 'A lightweight, content-first portfolio shipped as a static Astro site.',
-    problem: 'Stand up a fast personal site that ships mostly static HTML, with just enough TypeScript for interactivity.',
-    approach: [
-      'Built the site with Astro, keeping the shipped JavaScript minimal.',
-      'Wrote the interactive pieces in TypeScript.',
-      'Deployed as a static site on Vercel.',
-    ],
-    results: ['A fast, low-overhead portfolio that loads quickly and is simple to maintain.'],
-    link: { label: 'View on GitHub', href: 'https://github.com/WyroTech/wyrotech' },
-  },
 ]
 
 const de: Work[] = [
@@ -333,55 +284,6 @@ const de: Work[] = [
     ],
     results: ['Ein funktionierendes Echtzeit-Steuersystem über den gesamten Hardware-/Software-Stack.'],
     link: { label: 'Auf GitHub ansehen', href: 'https://github.com/WyroTech/RoboCar' },
-  },
-  {
-    slug: 'wyro-tech-portfolio',
-    title: 'wyro.tech — Angular-Portfolio',
-    client: 'Privat',
-    year: '2026',
-    role: 'Frontend-Engineer & Designer',
-    category: 'Web · Portfolio',
-    stack: ['Angular', 'Tailwind CSS', 'GSAP', 'Transloco', 'Vercel'],
-    visual: 'contours',
-    metric: { value: 'CI-gated', label: 'A11y + Lighthouse bei jedem PR' },
-    summary:
-      'Ein cinematisches Angular-20-Portfolio, gebaut mit Tailwind v4 und GSAP, mit Transloco lokalisiert und statisch auf Vercel vorgerendert.',
-    outcome: 'Ein Portfolio, bei dem jeder PR A11y und Lighthouse bestehen muss, bevor er gemergt werden kann.',
-    problem:
-      'Ein schnelles, animiertes, zweisprachiges Portfolio bauen, das beim Wachsen barrierefrei und performant bleibt – und das bei jeder Änderung belegen, nicht nur zum Start.',
-    approach: [
-      'Die Seite in Angular 20 mit Tailwind v4 für das Styling gebaut.',
-      'GSAP für die cinematische, scrollgesteuerte Bewegung genutzt.',
-      'Das Interface mit Transloco lokalisiert und für Vercel statisch vorgerendert.',
-      'Jeden Pull Request hinter einer CI-Pipeline abgesichert: Build, Bundle-Budget, Smoke-Test, Barrierefreiheit und ein mobiler Lighthouse-Lauf.',
-    ],
-    results: [
-      'Ein zweisprachiges, animiertes Portfolio mit striktem Performance- und Barrierefreiheits-Budget.',
-      'Qualität automatisch erzwungen – keine Regression geht ohne bestandenes Gate live.',
-    ],
-    link: { label: 'Auf GitHub ansehen', href: 'https://github.com/WyroTech/wyro-tech' },
-  },
-  {
-    slug: 'wyrotech-astro-portfolio',
-    title: 'WyroTech — Astro-Portfolio',
-    client: 'Privat',
-    year: '2025',
-    role: 'Full-Stack-Developer',
-    category: 'Web · Portfolio',
-    stack: ['Astro', 'TypeScript', 'CSS'],
-    visual: 'flow',
-    metric: { value: 'static', label: 'Astro-Seite auf Vercel ausgeliefert' },
-    summary:
-      'Ein früheres persönliches Portfolio, gebaut mit Astro und TypeScript – eine schnelle, content-first statische Seite, ausgeliefert auf Vercel.',
-    outcome: 'Ein leichtgewichtiges, content-first Portfolio, ausgeliefert als statische Astro-Seite.',
-    problem: 'Eine schnelle persönliche Seite aufsetzen, die überwiegend statisches HTML ausliefert – mit gerade genug TypeScript für Interaktivität.',
-    approach: [
-      'Die Seite mit Astro gebaut und das ausgelieferte JavaScript minimal gehalten.',
-      'Die interaktiven Teile in TypeScript geschrieben.',
-      'Als statische Seite auf Vercel ausgeliefert.',
-    ],
-    results: ['Ein schnelles, ressourcenschonendes Portfolio, das zügig lädt und einfach zu pflegen ist.'],
-    link: { label: 'Auf GitHub ansehen', href: 'https://github.com/WyroTech/wyrotech' },
   },
 ]
 

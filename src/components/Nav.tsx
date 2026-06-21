@@ -9,6 +9,44 @@ import { ui } from '../i18n/ui'
 import { useMagnetic } from '../hooks/useMagnetic'
 import './Nav.scss'
 
+// Hoisted out of Nav's render: a component declared inside render is a fresh
+// type on every render, so React remounts it and any internal state is lost.
+function LangSwitch({
+  className = '',
+  lang,
+  hrefFor,
+  label,
+  onPick,
+}: {
+  className?: string
+  lang: Lang
+  hrefFor: (l: Lang) => string
+  label: string
+  onPick: (l: Lang) => void
+}) {
+  return (
+    <div className={`nav__lang ${className}`} role="group" aria-label={label}>
+      {(['en', 'de'] as Lang[]).map((l, i) => (
+        <span key={l} className="nav__lang-cell">
+          {i > 0 && (
+            <span className="nav__lang-sep" aria-hidden="true">
+              /
+            </span>
+          )}
+          <Link
+            to={hrefFor(l)}
+            className={`nav__lang-link${lang === l ? ' is-active' : ''}`}
+            aria-current={lang === l ? 'true' : undefined}
+            onClick={() => onPick(l)}
+          >
+            {l.toUpperCase()}
+          </Link>
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [onDark, setOnDark] = useState(false)
@@ -49,10 +87,9 @@ export default function Nav() {
   // Wayfinding state, not decoration — so it runs regardless of reduced-motion
   // (CSS gates only the underline's transition, never its visibility).
   useEffect(() => {
-    if (!isHome) {
-      setActive('')
-      return
-    }
+    // `active` is only ever read behind an `isHome` guard in render, so there's
+    // no need to reset it here — just skip observing when we're off the home page.
+    if (!isHome) return
     const sections = links
       .map((i) => document.querySelector(i.hash))
       .filter((el): el is Element => !!el)
@@ -96,30 +133,10 @@ export default function Nav() {
     }
   }
 
-  const LangSwitch = ({ className = '' }: { className?: string }) => (
-    <div className={`nav__lang ${className}`} role="group" aria-label={t.menu.language}>
-      {(['en', 'de'] as Lang[]).map((l, i) => (
-        <span key={l} className="nav__lang-cell">
-          {i > 0 && (
-            <span className="nav__lang-sep" aria-hidden="true">
-              /
-            </span>
-          )}
-          <Link
-            to={hrefFor(l)}
-            className={`nav__lang-link${lang === l ? ' is-active' : ''}`}
-            aria-current={lang === l ? 'true' : undefined}
-            onClick={() => {
-              rememberLang(l)
-              setOpen(false)
-            }}
-          >
-            {l.toUpperCase()}
-          </Link>
-        </span>
-      ))}
-    </div>
-  )
+  const pickLang = (l: Lang) => {
+    rememberLang(l)
+    setOpen(false)
+  }
 
   return (
     <header
@@ -147,7 +164,7 @@ export default function Nav() {
         </nav>
 
         <div className="nav__aside">
-          <LangSwitch />
+          <LangSwitch lang={lang} hrefFor={hrefFor} label={t.menu.language} onPick={pickLang} />
           <a
             ref={ctaRef}
             className="nav__cta"
@@ -185,7 +202,13 @@ export default function Nav() {
           ))}
         </nav>
         <div className="nav__overlay-foot">
-          <LangSwitch className="nav__lang--overlay" />
+          <LangSwitch
+            className="nav__lang--overlay"
+            lang={lang}
+            hrefFor={hrefFor}
+            label={t.menu.language}
+            onPick={pickLang}
+          />
           <p className="nav__overlay-status t-label">
             <span className="nav__dot" aria-hidden="true" />
             {t.availability.short}

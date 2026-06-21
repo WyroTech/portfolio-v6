@@ -40,9 +40,11 @@
 }
 
 .service__no {
+  flex: none;
   color: var(--c-mute);
-  /* nudge the index onto the title's first-line cap height */
-  margin-top: 0.3em;
+  /* give the index a line-box as tall as the title's first line so it sits
+     truly centered against that line — no magic margin, no drift */
+  line-height: calc(var(--fs-h3) * 1.12);
   transition:
     color var(--dur) var(--ease-out),
     transform var(--dur) var(--ease-out);

@@ -30,7 +30,17 @@ export const techCategories: TechCategory[] = [
   {
     en: 'Backend & APIs',
     de: 'Backend & APIs',
-    items: ['.NET', 'C#', 'ASP.NET Core', 'EF Core', 'Node.js', 'Python', 'PostgreSQL'],
+    items: [
+      '.NET',
+      'C#',
+      'ASP.NET Core',
+      'EF Core',
+      'Node.js',
+      'Python',
+      'PostgreSQL',
+      'SQL Server',
+      'Elasticsearch',
+    ],
   },
   {
     en: 'Cloud & DevOps',
@@ -40,6 +50,6 @@ export const techCategories: TechCategory[] = [
   {
     en: 'Tooling',
     de: 'Tooling',
-    items: ['Git', 'ClickUp', 'Odoo'],
+    items: ['Git', 'JetBrains', 'ClickUp', 'Odoo'],
   },
 ]
