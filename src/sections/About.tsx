@@ -123,18 +123,6 @@ export default function About() {
               {t.cta.start}
             </ArrowLink>
           </Reveal>
-
-          <Reveal as="p" className="about__aside t-muted" delay={300}>
-            {t.about.aside}{' '}
-            <a
-              className="about__aside-link"
-              href="https://www.logopede-mitrisavelo.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t.about.asideCta}
-            </a>
-          </Reveal>
         </div>
 
         <div className="about__side">

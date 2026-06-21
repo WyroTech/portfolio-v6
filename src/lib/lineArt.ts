@@ -1,7 +1,7 @@
 import { range, rangeInt } from './prng'
 
-export type VisualKind = 'flow' | 'harmonograph' | 'contours' | 'waves'
-export const LINE_KINDS: VisualKind[] = ['flow', 'harmonograph', 'contours', 'waves']
+export type VisualKind = 'flow' | 'harmonograph' | 'contours' | 'waves' | 'ripple'
+export const LINE_KINDS: VisualKind[] = ['flow', 'harmonograph', 'contours', 'waves', 'ripple']
 
 export interface Stroke {
   width: number
@@ -256,11 +256,48 @@ function buildContours(rng: Rng): LineArt {
   return { strokes, fit: 'meet', frame }
 }
 
+/* ------------------------------------------------------------------ *
+ * ripple — concentric rings emanating from a source, like sound/voice
+ * ------------------------------------------------------------------ */
+function buildRipple(rng: Rng): LineArt {
+  const count = rangeInt(rng, 7, 10)
+  const cx = range(rng, 28, 46)
+  const cy = range(rng, 44, 56)
+  const gap = range(rng, 9, 12)
+  const amp = range(rng, 2.4, 4.4)
+  const speed = range(rng, 0.6, 1)
+  const segs = 80
+
+  // outer rings are fainter — the sound dissipating as it travels out
+  const strokes: Stroke[] = Array.from({ length: count }, (_, i) => ({
+    width: range(rng, 0.4, 0.7),
+    opacity: range(rng, 0.55, 1) * (1 - (i / count) * 0.7),
+  }))
+
+  const frame = (t: number) => {
+    const out: string[] = []
+    for (let i = 0; i < count; i++) {
+      // phase offset per ring makes a pulse travel outward through the rings
+      const r = (i + 1) * gap + amp * Math.sin(t * speed - i * 0.7)
+      const pts: number[][] = []
+      for (let s = 0; s <= segs; s++) {
+        const a = (s / segs) * TAU
+        pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r])
+      }
+      out.push(toPath(pts, true))
+    }
+    return out
+  }
+
+  return { strokes, fit: 'slice', frame }
+}
+
 const BUILDERS: Record<VisualKind, (rng: Rng) => LineArt> = {
   flow: buildFlow,
   harmonograph: buildHarmonograph,
   contours: buildContours,
   waves: buildWaves,
+  ripple: buildRipple,
 }
 
 export function buildLineArt(kind: VisualKind, rng: Rng): LineArt {

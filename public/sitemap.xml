@@ -84,4 +84,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/robocar-4"/>
     <changefreq>monthly</changefreq><priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://wyro.tech/work/mitrisa-velo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/mitrisa-velo"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/mitrisa-velo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/mitrisa-velo"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/mitrisa-velo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/mitrisa-velo"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/mitrisa-velo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/mitrisa-velo"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
 </urlset>

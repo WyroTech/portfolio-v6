@@ -33,8 +33,6 @@ const en = {
     lead: 'One developer — design and build, start to finish.',
     body:
       'Ten years building web apps and products — fast, accessible, and easy to grow. You get design and development from one person, with no agency overhead and no handoff in between.',
-    aside: 'On the side, I built a speech therapist’s website as a family & friends project.',
-    asideCta: 'See it ↗',
   },
 
   services: {
@@ -138,8 +136,6 @@ const de: Ui = {
     lead: 'Ein Entwickler – Design und Umsetzung, von Anfang bis Ende.',
     body:
       'Zehn Jahre Erfahrung mit Web-Apps und Produkten – schnell, barrierefrei und einfach erweiterbar. Sie erhalten Design und Entwicklung aus einer Hand, ohne Agentur-Overhead und ohne Übergaben dazwischen.',
-    aside: 'Nebenbei habe ich als Projekt für Familie & Freunde die Website einer Logopädin gebaut.',
-    asideCta: 'Ansehen ↗',
   },
 
   services: {

@@ -48,7 +48,6 @@ const en: Work[] = [
     stack: ['Angular', 'TypeScript', 'RxJS', 'Figma', 'Azure'],
     visual: 'flow',
     metric: { value: '0→1', label: 'on-prem → self-serve SaaS' },
-    featured: true,
     summary:
       'A SAP data-analytics product reimagined as a cloud-native SaaS on Azure — from the first Figma mockups to a production Angular interface.',
     outcome: 'Turned an on-prem analytics tool into a self-serve SaaS — one product non-technical analysts can run without training.',
@@ -160,6 +159,32 @@ const en: Work[] = [
     results: ['A working real-time control system across the full hardware/software stack.'],
     link: { label: 'View on GitHub', href: 'https://github.com/WyroTech/RoboCar' },
   },
+  {
+    slug: 'mitrisa-velo',
+    title: 'Mitrisa Velo — Speech Therapy',
+    client: 'Family project',
+    year: '2026',
+    role: 'Design & Build',
+    category: 'Website · Healthcare',
+    stack: ['React'],
+    visual: 'ripple',
+    metric: { value: 'Family', label: 'a build for family & friends' },
+    summary:
+      'A clean single-page website for a speech-language therapist — designed and built end to end in React, as a project for family & friends.',
+    outcome: 'A speech therapist’s practice online — a simple site to show her services and get in touch.',
+    problem:
+      'A speech-language therapist needed a simple, trustworthy web presence: one place to explain her services and let people reach her.',
+    approach: [
+      'Designed and built the site end to end in React.',
+      'Laid out the therapy services clearly on a single page.',
+      'Added a straightforward way to get in touch and book a session.',
+    ],
+    results: [
+      'A live, easy-to-navigate site the practice can point clients to.',
+      'Built as a personal project for family & friends.',
+    ],
+    link: { label: 'Visit the site', href: 'https://www.logopede-mitrisavelo.com/' },
+  },
 ]
 
 const de: Work[] = [
@@ -173,7 +198,6 @@ const de: Work[] = [
     stack: ['Angular', 'TypeScript', 'RxJS', 'Figma', 'Azure'],
     visual: 'flow',
     metric: { value: '0→1', label: 'von On-Prem zu Self-Service-SaaS' },
-    featured: true,
     summary:
       'Ein SAP-Datenanalyse-Produkt, neu gedacht als cloud-native SaaS-Anwendung auf Azure – von den ersten Figma-Mockups bis zum produktiven Angular-Interface.',
     outcome: 'Aus einem On-Prem-Analysewerkzeug ein Self-Service-SaaS gemacht – ein Produkt, das Analysten ohne technischen Hintergrund ohne Schulung bedienen.',
@@ -284,6 +308,32 @@ const de: Work[] = [
     ],
     results: ['Ein funktionierendes Echtzeit-Steuersystem über den gesamten Hardware-/Software-Stack.'],
     link: { label: 'Auf GitHub ansehen', href: 'https://github.com/WyroTech/RoboCar' },
+  },
+  {
+    slug: 'mitrisa-velo',
+    title: 'Mitrisa Velo — Logopädie',
+    client: 'Familienprojekt',
+    year: '2026',
+    role: 'Design & Umsetzung',
+    category: 'Website · Gesundheit',
+    stack: ['React'],
+    visual: 'ripple',
+    metric: { value: 'Familie', label: 'ein Projekt für Familie & Freunde' },
+    summary:
+      'Eine klare One-Page-Website für eine Logopädin – durchgängig in React gestaltet und gebaut, als Projekt für Familie & Freunde.',
+    outcome: 'Die Praxis einer Logopädin online – eine einfache Seite, die ihre Leistungen zeigt und Kontakt ermöglicht.',
+    problem:
+      'Eine Logopädin brauchte einen einfachen, vertrauenswürdigen Webauftritt: einen Ort, der ihre Leistungen erklärt und Kontakt ermöglicht.',
+    approach: [
+      'Die Seite durchgängig in React gestaltet und gebaut.',
+      'Die Therapie-Leistungen klar auf einer Seite dargestellt.',
+      'Einen einfachen Weg zur Kontaktaufnahme und Terminbuchung ergänzt.',
+    ],
+    results: [
+      'Eine live geschaltete, übersichtliche Seite, auf die die Praxis verweisen kann.',
+      'Als persönliches Projekt für Familie & Freunde gebaut.',
+    ],
+    link: { label: 'Zur Website', href: 'https://www.logopede-mitrisavelo.com/' },
   },
 ]
 
