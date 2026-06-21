@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://wyro.tech/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/"/>
+    <changefreq>monthly</changefreq><priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/"/>
+    <changefreq>monthly</changefreq><priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/work/sap-analytics-saas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/sap-analytics-saas"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/sap-analytics-saas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/sap-analytics-saas"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/sap-analytics-saas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/sap-analytics-saas"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/sap-analytics-saas"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/sap-analytics-saas"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/work/customer-portal-design-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/customer-portal-design-system"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/customer-portal-design-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/customer-portal-design-system"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/customer-portal-design-system</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/customer-portal-design-system"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/customer-portal-design-system"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/customer-portal-design-system"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/work/enterprise-saas-product</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/enterprise-saas-product"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/enterprise-saas-product"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/enterprise-saas-product"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/enterprise-saas-product</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/enterprise-saas-product"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/enterprise-saas-product"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/enterprise-saas-product"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/work/sap-desktop-tool</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/sap-desktop-tool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/sap-desktop-tool"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/sap-desktop-tool"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/sap-desktop-tool</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/sap-desktop-tool"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/sap-desktop-tool"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/sap-desktop-tool"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/work/robocar-4</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/robocar-4"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/robocar-4"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/robocar-4"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wyro.tech/de/work/robocar-4</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wyro.tech/work/robocar-4"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://wyro.tech/de/work/robocar-4"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wyro.tech/work/robocar-4"/>
+    <changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+</urlset>

@@ -1,0 +1,229 @@
+.work-card {
+  --card-pad: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  height: 100%;
+  padding: var(--card-pad);
+  border: 1px solid var(--hairline);
+  background: var(--bg);
+  color: var(--fg);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+/* subtle one-shot lift on hover/focus — depth without bounce */
+.work-card:hover,
+.work-card:focus-visible {
+  transform: translateY(-2px);
+}
+
+/* invert the whole TOKEN context on hover so muted labels + hairlines flip to
+   light too (t-label uses --fg-soft, which otherwise stays a dark grey on black) */
+.work-card:hover {
+  --bg: var(--c-ink);
+  --fg: var(--c-paper);
+  --fg-soft: rgba(255, 255, 255, 0.72);
+  --c-mute: rgba(255, 255, 255, 0.66);
+  --hairline: rgba(255, 255, 255, 0.16);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.work-card:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+/* ---- Generative thumbnail (breaks out to card edges) ---- */
+.work-card__thumb {
+  margin: calc(-1 * var(--card-pad)) calc(-1 * var(--card-pad)) 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.work-card:hover .work-card__thumb {
+  border-bottom-color: color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.work-card__visual {
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.work-card:hover .work-card__visual {
+  transform: scale(1.04);
+}
+
+.work-card--featured .work-card__thumb {
+  aspect-ratio: 24 / 9;
+}
+
+.work-card__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.work-card__top > * {
+  min-width: 0;
+}
+
+.work-card__no {
+  color: currentColor;
+  opacity: 0.7;
+  flex: none;
+}
+
+.work-card__tax {
+  color: currentColor;
+  opacity: 0.72;
+  text-align: right;
+}
+
+.work-card__body {
+  margin-top: auto;
+}
+
+.work-card__title {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+  letter-spacing: var(--ls-heading);
+}
+
+.work-card--featured .work-card__title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* keep featured text rows left-constrained so the wide card has no middle void */
+@media (min-width: 768px) {
+  .work-card--featured .work-card__top,
+  .work-card--featured .work-card__body,
+  .work-card--featured .work-card__foot {
+    max-width: 60rem;
+  }
+}
+
+.work-card__outcome {
+  margin-top: var(--space-4);
+  max-width: 48ch;
+  color: currentColor;
+  opacity: 0.72;
+}
+
+.work-card__foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--hairline);
+}
+
+.work-card:hover .work-card__foot {
+  border-top-color: color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.work-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.work-card__metric-value {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: var(--ls-display);
+  font-variant-numeric: tabular-nums;
+}
+
+/* phrase values ("Angular · .NET", "real-time") — smaller, wraps cleanly,
+   stays a label rather than masquerading as a giant datum */
+.work-card__metric-value--text {
+  font-size: var(--fs-h3);
+  line-height: 1.12;
+  letter-spacing: var(--ls-heading);
+  font-variant-numeric: normal;
+  max-width: 18ch;
+  overflow-wrap: anywhere;
+}
+
+.work-card__metric-label {
+  color: currentColor;
+  opacity: 0.62;
+}
+
+.work-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  white-space: nowrap;
+  flex: none;
+}
+
+.work-card__arrows {
+  position: relative;
+  display: inline-block;
+  width: 1.2em;
+  height: 1em;
+  overflow: hidden;
+}
+
+.work-card__arrows span {
+  position: absolute;
+  inset: 0;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.work-card__arrows span:nth-child(1) {
+  transform: translateX(0);
+}
+.work-card__arrows span:nth-child(2) {
+  transform: translateX(-140%);
+}
+
+.work-card:hover .work-card__arrows span:nth-child(1) {
+  transform: translateX(140%);
+}
+.work-card:hover .work-card__arrows span:nth-child(2) {
+  transform: translateX(0);
+}
+
+@media (max-width: 640px) {
+  .work-card__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* the token-inversion (a state change) stays; transforms don't */
+  .work-card {
+    transition:
+      background-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .work-card:hover,
+  .work-card:focus-visible {
+    transform: none;
+  }
+  .work-card__visual {
+    transition: none;
+  }
+  .work-card:hover .work-card__visual {
+    transform: none;
+  }
+}

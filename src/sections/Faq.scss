@@ -1,0 +1,36 @@
+.faq {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--hairline);
+}
+
+.faq__item:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faq__q {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-h4);
+  line-height: 1.15;
+  letter-spacing: var(--ls-heading);
+}
+
+.faq__a {
+  color: var(--fg-soft);
+  max-width: 62ch;
+}
+
+@media (min-width: 768px) {
+  .faq__item {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+}

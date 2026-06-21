@@ -1,0 +1,13 @@
+.visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: inherit; /* currentColor follows the surface (inverts on dark / hover) */
+  overflow: hidden;
+}
+
+.visual svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

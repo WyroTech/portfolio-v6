@@ -1,0 +1,31 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 26px));
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Print: the IntersectionObserver never fires without scrolling, so force the
+   initial-hidden state visible (belt-and-braces — useReveal is already hardened). */
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,59 @@
+.capabilities__label {
+  display: block;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* one labelled group per tech category — breathing room between them */
+.tech-category {
+  & + & {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+  }
+}
+
+.tech-category__label {
+  display: block;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* static logo wall (replaces the marquee) */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem) var(--space-6);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--hairline);
+}
+
+.tech-grid__item {
+  display: flex;
+  /* staggered settle-in as the wall enters view (wipes across the grid) */
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 30ms);
+}
+
+.tech-grid.is-revealed .tech-grid__item {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* collapse the stagger to instant, consistent with useReveal */
+  .tech-grid__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Print: the reveal observer never fires without scrolling, so force the
+   staggered grid items visible (belt-and-braces). */
+@media print {
+  .tech-grid__item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

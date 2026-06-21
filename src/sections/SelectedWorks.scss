@@ -1,0 +1,22 @@
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+}
+
+.works-grid__item {
+  display: flex;
+}
+
+.works-grid__item > a {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .works-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .works-grid__item--featured {
+    grid-column: 1 / -1;
+  }
+}

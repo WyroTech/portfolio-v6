@@ -1,0 +1,247 @@
+.footer {
+  background: var(--bg);
+  color: var(--fg);
+  border-top: 1px solid var(--hairline);
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.footer__mark {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display-mid);
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.footer__tagline {
+  margin-top: var(--space-3);
+  max-width: 30ch;
+}
+
+.footer__cta {
+  position: relative;
+  display: inline-block;
+  /* ~10px top+bottom lifts the smallest (~24px line-box) tap target to ≥44px
+     without touching the type size; underline ::after is offset to match. */
+  padding-block: 10px;
+  margin-top: calc(var(--space-5) - 10px);
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: var(--ls-heading);
+}
+
+.footer__cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: calc(10px + 0.05em);
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right center;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.footer__cta:hover::after,
+.footer__cta:focus-visible::after {
+  transform: scaleX(0);
+}
+
+/* Clip-path two-layer split on the label (matches Contact email).
+   Scoped to the text only — the trailing arrow stays put. */
+.footer__cta-text {
+  position: relative;
+  display: inline-block;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.footer__cta-split {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: max-content;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.footer__cta-split::before,
+.footer__cta-split::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  transition: transform var(--dur) cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.footer__cta-split::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.footer__cta-split::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.footer__cta:hover .footer__cta-text,
+.footer__cta:focus-visible .footer__cta-text {
+  opacity: 0;
+}
+
+.footer__cta:hover .footer__cta-split,
+.footer__cta:focus-visible .footer__cta-split {
+  opacity: 1;
+}
+
+.footer__cta:hover .footer__cta-split::before,
+.footer__cta:focus-visible .footer__cta-split::before {
+  transform: translateY(-0.12em);
+}
+
+.footer__cta:hover .footer__cta-split::after,
+.footer__cta:focus-visible .footer__cta-split::after {
+  transform: translateY(0.12em);
+}
+
+.footer__reply {
+  display: block;
+  margin-top: var(--space-4);
+  color: var(--c-mute);
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__col-label {
+  margin-bottom: var(--space-2);
+  color: var(--c-mute);
+}
+
+/* Directional arrow-wipe (echoes the ArrowLink language without duplicating
+   the doubled-arrow component). A hidden → slides in from the left while the
+   label nudges right. Replaces the old opacity fade. */
+.footer__col a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  padding-left: 0;
+  color: var(--fg);
+  transition:
+    padding-left var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.footer__col a::before {
+  content: '\2192'; /* → */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-0.6em, -50%);
+  opacity: 0;
+  transform: translateX(-0.6em);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.footer__col a:hover,
+.footer__col a:focus-visible {
+  color: var(--fg);
+  padding-left: 1.4em;
+}
+
+.footer__col a:hover::before,
+.footer__col a:focus-visible::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* stacks cleanly on narrow widths (no ragged German wrap), one row on desktop */
+.footer__base {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--hairline);
+  color: var(--c-mute-text);
+}
+
+.footer__legal {
+  display: inline-flex;
+  gap: var(--space-5);
+}
+
+.footer__legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--c-mute-text);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.footer__legal a:hover,
+.footer__legal a:focus-visible {
+  color: var(--fg);
+}
+
+.footer__colophon {
+  font-variant-numeric: tabular-nums;
+}
+
+.footer__top {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--c-mute-text);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.footer__top:hover,
+.footer__top:focus-visible {
+  color: var(--fg);
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1.6fr 1fr 1fr;
+  }
+  .footer__base {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* CTA split: halves stay merged & hidden, selectable text never fades.
+     Underline keeps its own reduced-motion-safe behaviour. */
+  .footer__cta-text {
+    opacity: 1 !important;
+    transition: none;
+  }
+  .footer__cta-split {
+    display: none;
+  }
+  /* Arrow-wipe: arrow renders in final position, label not translated. */
+  .footer__col a {
+    padding-left: 1.4em;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .footer__col a::before {
+    opacity: 1;
+    transform: translate(0, -50%);
+    transition: none;
+  }
+}

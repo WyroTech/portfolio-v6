@@ -1,0 +1,123 @@
+.proc-path {
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  --proc-gap: clamp(2.25rem, 5vw, 3.75rem);
+  --proc-node: clamp(2.5rem, 5vw, 3rem);
+}
+
+.proc {
+  display: grid;
+  grid-template-columns: var(--proc-node) 1fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding-bottom: var(--proc-gap);
+}
+
+.proc:last-child {
+  padding-bottom: 0;
+}
+
+/* rail = numbered node + the connecting line down to the next node */
+.proc__rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.proc__node {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--proc-node);
+  height: var(--proc-node);
+  flex: none;
+  border: 1px solid color-mix(in srgb, var(--fg) 50%, transparent);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  /* draw-in */
+  opacity: 0;
+  transform: scale(0.55);
+  transition:
+    opacity var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+  transition-delay: calc(var(--i) * 0.12s);
+}
+
+/* the line that links each node to the next — scales in from the top */
+.proc:not(:last-child) .proc__rail::after {
+  content: '';
+  position: absolute;
+  top: var(--proc-node);
+  bottom: calc(-1 * var(--proc-gap));
+  left: 50%;
+  width: 1px;
+  background: color-mix(in srgb, var(--fg) 32%, transparent);
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i) * 0.12s + 0.14s);
+}
+
+.proc-path.is-in .proc__node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.proc-path.is-in .proc:not(:last-child) .proc__rail::after {
+  transform: translateX(-50%) scaleY(1);
+}
+
+/* the active step under the cursor fills — a small interactive accent */
+.proc:hover .proc__node {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.proc__body {
+  padding-top: calc((var(--proc-node) - 1.2em) / 2);
+}
+
+.proc__title {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-h3);
+  letter-spacing: var(--ls-heading);
+}
+
+.proc__detail {
+  margin-top: var(--space-3);
+  color: var(--fg-soft);
+  max-width: 46ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proc__node {
+    opacity: 1;
+    transform: none;
+    transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .proc:not(:last-child) .proc__rail::after {
+    transform: translateX(-50%);
+    transition: none;
+  }
+}
+
+/* Print: the draw-in observer never fires without scrolling, so force the
+   nodes visible and the connecting rail drawn (belt-and-braces). */
+@media print {
+  .proc__node {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .proc:not(:last-child) .proc__rail::after {
+    transform: translateX(-50%) scaleY(1) !important;
+  }
+}

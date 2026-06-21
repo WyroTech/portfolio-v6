@@ -1,0 +1,174 @@
+.contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+
+.contact__main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.contact__visual {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .contact {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .contact__visual {
+    display: block;
+    align-self: stretch;
+    min-height: 22rem;
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+}
+
+.contact__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-5);
+  row-gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.contact__avail {
+  margin-left: auto;
+  color: var(--fg-soft);
+  text-align: right;
+}
+
+.contact__headline {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-h1);
+  line-height: 1.02;
+  letter-spacing: var(--ls-display);
+  max-width: 15ch;
+  margin-top: var(--space-4);
+}
+
+.contact__note {
+  max-width: 46ch;
+  margin-top: var(--space-2);
+}
+
+.contact__reply {
+  margin-top: var(--space-4);
+  color: var(--fg-soft);
+}
+
+.contact__email {
+  position: relative;
+  width: fit-content;
+  /* ~7px top+bottom lifts the smallest (~30px line-box) tap target to ≥44px
+     without touching the type size; underline + split overlay are offset to match. */
+  padding-block: 7px;
+  margin-top: calc(var(--space-3) - 7px);
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: clamp(1.5rem, 5vw, 3.25rem);
+  letter-spacing: var(--ls-heading);
+}
+
+.contact__email::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: calc(7px + 0.05em);
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right center;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.contact__email:hover::after,
+.contact__email:focus-visible::after {
+  transform: scaleX(0);
+}
+
+/* Real, selectable layer */
+.contact__email-text {
+  display: inline-block;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* Clip-path split overlay (Emil Kowalski two-layer technique, vertical wipe).
+   Two copies of the text, top/bottom halves, that slide ~0.12em apart and
+   settle on hover/focus. aria-hidden + pointer-events:none — the base
+   `.contact__email-text` carries the accessible/selectable copy. */
+.contact__email-split {
+  position: absolute;
+  inset: 7px 0; /* match .contact__email padding-block so halves align with the text */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.contact__email-split::before,
+.contact__email-split::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  transition: transform var(--dur) cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.contact__email-split::before {
+  clip-path: inset(0 0 50% 0);
+}
+
+.contact__email-split::after {
+  clip-path: inset(50% 0 0 0);
+}
+
+.contact__email:hover .contact__email-text,
+.contact__email:focus-visible .contact__email-text {
+  opacity: 0;
+}
+
+.contact__email:hover .contact__email-split,
+.contact__email:focus-visible .contact__email-split {
+  opacity: 1;
+}
+
+.contact__email:hover .contact__email-split::before,
+.contact__email:focus-visible .contact__email-split::before {
+  transform: translateY(-0.12em);
+}
+
+.contact__email:hover .contact__email-split::after,
+.contact__email:focus-visible .contact__email-split::after {
+  transform: translateY(0.12em);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* halves stay merged & hidden; selectable text never fades.
+     The retracting underline keeps its own reduced-motion-safe behaviour. */
+  .contact__email-text {
+    opacity: 1 !important;
+    transition: none;
+  }
+  .contact__email-split {
+    display: none;
+  }
+}
+
+.contact__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.contact__local {
+  color: var(--fg-soft);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,115 @@
+.services {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--grid-gap);
+}
+
+.service {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-block: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--hairline);
+}
+
+/* accent rule that sweeps across the row's top border on hover — the
+   ArrowLink/Nav underline grammar, applied horizontally to a list row */
+.service::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.service:hover::after,
+.service:focus-within::after {
+  transform: scaleX(1);
+}
+
+.service__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.service__no {
+  color: var(--c-mute);
+  /* nudge the index onto the title's first-line cap height */
+  margin-top: 0.3em;
+  transition:
+    color var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-out);
+}
+
+.service:hover .service__no,
+.service:focus-within .service__no {
+  color: var(--fg);
+  transform: translateX(0.25em);
+}
+
+.service__title {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-h3);
+  line-height: 1.12;
+  letter-spacing: var(--ls-heading);
+  /* reserve two lines so every body paragraph starts on the same baseline */
+  min-height: 2.24em;
+}
+
+.service__blurb {
+  max-width: 50ch;
+  color: var(--fg-soft);
+}
+
+.service__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: auto;
+}
+
+.service__item {
+  color: var(--c-mute);
+}
+
+.services__cta {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (min-width: 768px) {
+  .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .services {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* keep the cheap color change; drop the sweep + number translate */
+  .service::after {
+    transition: none;
+    transform: scaleX(0);
+  }
+  .service__no {
+    transition: color var(--dur) var(--ease-out);
+  }
+  .service:hover .service__no,
+  .service:focus-within .service__no {
+    transform: none;
+  }
+}

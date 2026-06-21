@@ -1,0 +1,14 @@
+.section {
+  position: relative;
+  padding-block: var(--space-section);
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.section--flush-top {
+  padding-top: 0;
+}
+
+.section--tight {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}

@@ -1,0 +1,17 @@
+/* Hairline scroll-position indicator — editorial, not a loading toy.
+   Pinned above the nav; sharp corners; tracks scroll 1:1 (no transition). */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 101; /* above nav (100) */
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  background: var(--fg);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left center;
+  /* no transition — the bar maps directly to scroll position */
+}

@@ -1,0 +1,201 @@
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: stretch;
+  padding-top: var(--nav-h);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 4.5rem);
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+.hero__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.hero__sep {
+  color: var(--c-mute);
+  margin-inline: 0.15em;
+}
+
+.hero__loc {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ---- Split layout ---- */
+.hero__main {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hero__lower {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: var(--wght-display);
+  font-size: var(--fs-hero);
+  line-height: 1.0;
+  letter-spacing: var(--ls-display);
+  text-wrap: balance;
+  hyphens: auto;
+}
+
+.hero__line {
+  display: block;
+  text-wrap: balance;
+  /* masked per-line rise on load — line B trails line A by ~90ms */
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(0.4em);
+  transition:
+    clip-path var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+.hero.is-loaded .hero__line {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+
+.hero__line--muted {
+  color: var(--c-mute-text);
+  transition-delay: 90ms; /* trail line A on the load-rise */
+}
+
+.hero__sub {
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+/* primary CTA reads as a clear, dominant action */
+.hero__cta--primary {
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid var(--fg);
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.hero__cta--primary:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* no extra underline on the bordered button */
+.hero__cta--primary .arrow-link__text::after {
+  content: none;
+}
+
+.hero__cta--ghost {
+  color: var(--c-mute-text);
+}
+
+/* ---- Generative visual ---- */
+.hero__visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+}
+
+.hero__visual-cap {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  color: var(--c-mute-text);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  padding: var(--space-1) var(--space-2);
+}
+
+/* ---- Scroll hint ---- */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--c-mute);
+}
+
+.hero__scroll:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 4px;
+}
+
+.hero__scroll-arrow {
+  animation: hero-bob 1.8s var(--ease-in-out) infinite;
+}
+
+@keyframes hero-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (min-width: 900px) {
+  .hero__main {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: stretch;
+  }
+  .hero__content {
+    /* keep the whole text block together and vertically centred so the
+       CTAs stay above the fold (no large mid-column void) */
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+  .hero__visual {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 26rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-arrow {
+    animation: none;
+  }
+
+  /* lines render fully visible — no masked rise */
+  .hero__line {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+}

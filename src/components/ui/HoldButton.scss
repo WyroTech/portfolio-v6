@@ -1,0 +1,70 @@
+.hold-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--fg);
+  overflow: hidden;
+  isolation: isolate;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--fg);
+  cursor: pointer;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: border-color var(--dur) var(--ease-out);
+}
+
+.hold-btn__fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fg);
+  transform: scaleX(0);
+  /* grow from where the user pressed (set by HoldButton on pointerdown) */
+  transform-origin: var(--fill-x, 0) center;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.hold-btn.is-holding .hold-btn__fill {
+  transform: scaleX(1);
+  transition: transform var(--hold-ms, 650ms) linear;
+}
+
+.hold-btn.is-done .hold-btn__fill {
+  transform: scaleX(1);
+  transition: transform 0.2s var(--ease-out);
+}
+
+/* Label inverts as the fill passes under it (pure B&W difference) */
+.hold-btn__label {
+  position: relative;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.hold-btn__hint {
+  position: relative;
+  margin-left: auto;
+  color: var(--c-mute);
+  mix-blend-mode: difference;
+}
+
+@media (hover: none) {
+  .hold-btn__hint::after {
+    content: '';
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hold-btn__fill {
+    transition: none;
+  }
+  .hold-btn__label,
+  .hold-btn__hint {
+    mix-blend-mode: normal;
+    color: var(--fg);
+  }
+}

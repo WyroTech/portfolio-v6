@@ -1,0 +1,18 @@
+/* ============================================================
+   Entry stylesheet — order matters (tokens first)
+   Component / section styles are colocated and imported by their .tsx
+   ============================================================ */
+
+@use 'tokens';
+@use 'reset';
+@use 'typography';
+@use 'grid';
+
+html,
+body {
+  background-color: var(--c-paper);
+}
+
+#root {
+  isolation: isolate;
+}
