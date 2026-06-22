@@ -1,44 +1,64 @@
 # wyro.tech — SEO + page-speed: next work
 
-State: **green** (`npm run typecheck` + `npm run build` pass; accesslint 0 on `/` and `/de`).
-Branch `polish/b2b-reposition-seo`. Everything below is from the `seo-pagespeed-audit` workflow.
+State: **green** (`npm run typecheck` + `npm run build` pass).
+Most of the original audit is now shipped; the only deferred item is prerendering (#2).
 
 ## Root cause behind most findings
 The site is a **pure client-rendered SPA** (Vite + React, `dist/index.html` = `<div id="root"></div>`).
-Correct per-route titles/meta/JSON-LD/body only exist **after ~132 KB gz of JS runs** → JS-blind crawlers
+Correct per-route titles/meta/JSON-LD/body only exist **after ~133 KB gz of JS runs** → JS-blind crawlers
 (Bing, LinkedIn, Slack, AI crawlers, social unfurls) and your raw `<title>`/`<h1>` signals are weak, and LCP
-waits on JS. Prerendering fixes the bulk of SEO **and** CWV at once.
+waits on JS. Prerendering (#2) is the one lever that fixes the bulk of SEO **and** CWV at once — but it's deferred.
 
-## Done this session
-- ✅ **#1 Static `index.html` `<head>`** updated to keyword-rich B2B/local metadata (title/desc/OG/Twitter/alt).
-  "Deggendorf" now appears 8× in `dist/index.html`. (Interim until prerender lands.)
+## Done
+- ✅ **#1 Static `index.html` `<head>`** — keyword-rich B2B/local metadata (interim until prerender lands).
+- ✅ **#3 Hero keyword** — hero sub-lead (EN+DE) now reads "…web developer in Deggendorf…" /
+  "…Webentwickler in Deggendorf…". H1 kept as the minimalist brand lines by design; the keyword lives in the
+  visible sub-paragraph + the new #4 `<h2>`.
+- ✅ **#4 Local section** — new `<Local/>` (`id="standort"`, before `<Contact/>`) with a visible `<h2>`
+  "Web developer in Deggendorf & Niederbayern." / "Webentwickler in Deggendorf & Niederbayern." and a lead
+  paragraph naming Niederbayern/Bayern/worldwide. Reuses `Section` + `SectionHead` (no bespoke CSS).
+  Strings in `src/i18n/ui.ts` (`local` block).
+- ✅ **#5 FAQPage JSON-LD** — `FAQPage` node added to the `@graph` in `src/pages/Home.tsx`, mapped from
+  `data/faq.ts` (conditional spread so it self-hides if the FAQ array empties, matching the section).
+- ✅ **#6 German legal routes** — added `/de/impressum` + `/de/datenschutz` (`src/App.tsx`); footer legal
+  links are language-correct via `lp()`; legal docs gained `description` + `path`, passed to `<Seo>`.
+  (Both remain `noindex` — see note below if you want Impressum indexed for NAP.)
+- ✅ **#8 Defer off the critical path** — Vercel `<Analytics/>` + `<SpeedInsights/>` are now `lazy()` +
+  mounted only after `requestIdleCallback` (timeout fallback); they're split into their own chunks, out of the
+  initial JS. Lenis init is likewise deferred to `requestIdleCallback` (reduced-motion guard kept).
 
-## CRITICAL (do first)
-- **#2 Add prerender/SSG** — biggest lever (LCP −1 to −2.5s on mobile + correct indexing/unfurls for all
-  crawlers). Use **`vite-react-ssg`** (react-helmet-async already wired) or `react-snap` as a `postbuild`.
-  Emit static HTML per route: `/`, `/de`, each `/work/<slug>` (EN+DE), `/impressum`, `/datenschutz`.
-- **#3 H1 has zero target keywords** — Hero H1 is "One developer. / Design & code." Work the primary keyword
-  into the H1 or a visible sub-line, e.g. DE "Webentwickler in Deggendorf — B2B-Web-Apps, Dashboards & SaaS."
-  Edit `src/i18n/ui.ts` hero strings (DE+EN); render in `src/sections/Hero.tsx`.
+## DEFERRED (revisit) — #2 Prerender/SSG
+Biggest lever (LCP −1 to −2.5s on mobile + correct indexing/unfurls for all crawlers). **Deferred this session
+by choice** (avoids adding a Chromium build dependency for now).
 
-## HIGH
-- **#4 No "Deggendorf/Niederbayern" in visible body prose** (only micro-labels + JSON-LD). Add a local section
-  (`src/sections/`, `id="standort"`) with an `<h2>` containing "Webentwickler Deggendorf" + "Niederbayern".
-- **#5 No `FAQPage` structured data** despite a real FAQ — add a `FAQPage` node to the `@graph` in
-  `src/pages/Home.tsx` mapping `faq.ts` → `mainEntity[{Question, acceptedAnswer{Answer}}]`. Free rich result.
-- **#6 German legal pages render `lang="en"` and have no `/de` routes** — add `/de/impressum` + `/de/datenschutz`
-  (or force `lang="de"` for legal), point footer to the language-correct path, give each a real description;
-  consider removing `noindex` from Impressum. Files: `src/App.tsx`, `src/pages/LegalPage.tsx`, footer.
-- **#7 `react-vendor` 73 KB gz (~55% of initial JS)** — import router from `react-router` (core) not
-  `react-router-dom`; consider dropping `react-helmet-async` for React 19 native `<title>`/`<meta>` hoisting in
-  `src/components/Seo.tsx` (~12–20 KB gz off the critical path). Reconcile with #2 if adopting vite-react-ssg.
+**Research verdict (version-verified):**
+- ❌ **`vite-react-ssg` is a hard blocker** — latest stable 0.9.0 caps peer `vite` at `^7` (no Vite 8/Rolldown)
+  and declares `react-router-dom ^6`, not v7. Would need a forced peer override **and** a full entry/route-array
+  rewrite. Don't use unless the project ever drops to Vite 7.
+- ❌ **`react-snap`** — dead since 2018 (Puppeteer 1.x, React 18/19 hydration breakage). Eliminate.
+- ✅ **Custom Puppeteer postbuild — chosen approach when this is picked up.** Zero peer-dep surface (operates on
+  built `dist/`, so Vite 8/Rolldown is irrelevant), no source refactor, and `react-helmet-async@3` head output
+  (title/meta/canonical/hreflang/JSON-LD) serializes into the captured HTML verbatim.
+  - 1st step: `npm i -D puppeteer`; add `"prerender": "node scripts/prerender.mjs"` to run after `vite build`.
+  - Script: boot `vite preview`, visit all 16 routes (`/`, `/de`, 7× `/work/<slug>`, 7× `/de/work/<slug>`,
+    `/impressum`, `/datenschutz` — pull slugs from `data/works.ts`, don't hardcode), `goto(networkidle0)`,
+    wait for `document.title` to be set (confirms Helmet applied), write `dist/<route>/index.html` from
+    `outerHTML`.
+  - Switch `createRoot` → `hydrateRoot` in `src/main.tsx` so the client hydrates the snapshot.
+- 2nd choice: `@prerenderer/prerenderer` + `@prerenderer/renderer-puppeteer` (maintained wrapper, same crawl).
 
-## MEDIUM
-- **#8 Defer off the critical path** — `lazy()`+`Suspense` the Vercel `<Analytics/>` + `<SpeedInsights/>`;
-  lazy-init Lenis after `requestIdleCallback`/first interaction (keep reduced-motion guard). File: `src/App.tsx`,
-  `src/hooks/useLenis.ts`.
+## #7 — RESOLVED as "no change"
+Dropping `react-helmet-async` for React 19 native `<title>`/`<meta>` hoisting was on the list, but: (a) helmet@3
+officially supports React 19 and is needed to capture head into the Puppeteer snapshot for #2; (b) doing it now,
+with a static `<head>` already in `index.html`, would risk duplicate tags or strip the crawler-facing head. So
+**keep `react-helmet-async`.** The `react-router` core-vs-dom import swap saves negligible bytes — skip.
+
+## Optional polish (not blocking)
+- Consider removing `noindex` from `/impressum` (Impressums are commonly indexed and reinforce local NAP/trust).
+  If done, reconcile the `/impressum` vs `/de/impressum` canonical (content is German-only) to avoid dup-content.
 
 ## Note
-Two audit claims were disproven against the code and dropped: case studies are NOT duplicate DE/EN
-(works.ts has a real `de` array), and `CaseStudy.tsx` already passes `path`+`lang` to `<Seo>` (canonical/hreflang
-correct post-JS). Full report: workflow `seo-pagespeed-audit` output.
+Two earlier audit claims were disproven against the code: case studies are NOT duplicate DE/EN
+(`works.ts` has a real `de` array), and `CaseStudy.tsx` already passes `path`+`lang` to `<Seo>`, which derives
+the `/de` canonical via `dePath()` — German case-study canonicals are correct (a re-flag of a "DE canonical bug"
+was checked against `Seo.tsx` and is a false alarm).

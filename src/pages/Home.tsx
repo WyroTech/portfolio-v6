@@ -1,6 +1,7 @@
 import Seo, { SITE_URL, OG_IMAGE } from '../components/Seo'
 import { site } from '../data/site'
 import { services } from '../data/services'
+import { faqs } from '../data/faq'
 import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
@@ -13,17 +14,20 @@ import About from '../sections/About'
 import Timeline from '../sections/Timeline'
 import Faq from '../sections/Faq'
 import Testimonials from '../sections/Testimonials'
+import Local from '../sections/Local'
 import Contact from '../sections/Contact'
 
 export default function Home() {
   const { lang } = useLang()
   const t = loc(ui, lang)
   const svc = loc(services, lang)
+  const faqItems = loc(faqs, lang)
   const homeUrl = lang === 'de' ? `${SITE_URL}/de` : SITE_URL
 
   const personId = `${SITE_URL}/#person`
   const serviceId = `${SITE_URL}/#service`
   const websiteId = `${SITE_URL}/#website`
+  const faqId = `${SITE_URL}/#faq`
   const sameAs = site.social.filter((s) => s.href.startsWith('http')).map((s) => s.href)
 
   const knowsAbout = [
@@ -120,6 +124,22 @@ export default function Home() {
           itemOffered: { '@type': 'Service', name: s.title, description: s.blurb },
         })),
       },
+      ...(faqItems.length
+        ? [
+            {
+              '@type': 'FAQPage',
+              '@id': faqId,
+              url: homeUrl,
+              isPartOf: { '@id': websiteId },
+              inLanguage: lang,
+              mainEntity: faqItems.map((item) => ({
+                '@type': 'Question',
+                name: item.q,
+                acceptedAnswer: { '@type': 'Answer', text: item.a },
+              })),
+            },
+          ]
+        : []),
     ],
   }
 
@@ -142,6 +162,7 @@ export default function Home() {
         <Timeline />
         <Faq />
         <Testimonials />
+        <Local />
         <Contact />
       </main>
     </>

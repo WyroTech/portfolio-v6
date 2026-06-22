@@ -63,10 +63,10 @@ export default function Footer() {
           © {year} {site.person}
         </span>
         <nav className="footer__legal" aria-label="Legal">
-          <Link to="/impressum" className="t-label">
+          <Link to={lp('/impressum')} className="t-label">
             Impressum
           </Link>
-          <Link to="/datenschutz" className="t-label">
+          <Link to={lp('/datenschutz')} className="t-label">
             Datenschutz
           </Link>
         </nav>

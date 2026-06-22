@@ -9,33 +9,54 @@ declare global {
 
 /**
  * Initializes Lenis smooth scrolling for the app.
- * Disabled automatically when the user prefers reduced motion.
+ *
+ * Disabled automatically when the user prefers reduced motion. Initialization is
+ * deferred to `requestIdleCallback` (with a timeout fallback) so the Lenis chunk
+ * and its rAF loop never compete with first paint / hydration; until it boots,
+ * native scrolling is used and the `window.__lenis` consumers fall back cleanly.
  */
 export function useLenis() {
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.6,
-    })
-
-    window.__lenis = lenis
-
+    let lenis: Lenis | undefined
     let rafId = 0
-    const raf = (time: number) => {
-      lenis.raf(time)
+    let cancelled = false
+
+    const start = () => {
+      if (cancelled) return
+
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.6,
+      })
+
+      window.__lenis = lenis
+
+      const raf = (time: number) => {
+        lenis?.raf(time)
+        rafId = requestAnimationFrame(raf)
+      }
       rafId = requestAnimationFrame(raf)
     }
-    rafId = requestAnimationFrame(raf)
+
+    let idleId = 0
+    const usingIdle = 'requestIdleCallback' in window
+    if (usingIdle) {
+      idleId = window.requestIdleCallback(start, { timeout: 2000 })
+    } else {
+      idleId = window.setTimeout(start, 1)
+    }
 
     return () => {
-      cancelAnimationFrame(rafId)
-      lenis.destroy()
+      cancelled = true
+      if (usingIdle) window.cancelIdleCallback(idleId)
+      else window.clearTimeout(idleId)
+      if (rafId) cancelAnimationFrame(rafId)
+      lenis?.destroy()
       delete window.__lenis
     }
   }, [])

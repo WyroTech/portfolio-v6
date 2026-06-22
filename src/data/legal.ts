@@ -5,6 +5,10 @@ export interface LegalBlock {
 
 export interface LegalDoc {
   title: string
+  /** meta description for this page */
+  description: string
+  /** language-neutral path beginning with "/" (no /de prefix) */
+  path: string
   updated: string
   blocks: LegalBlock[]
 }
@@ -16,6 +20,9 @@ export interface LegalDoc {
  */
 export const impressum: LegalDoc = {
   title: 'Impressum',
+  description:
+    'Impressum und Anbieterkennzeichnung von WyroTech – Andreas Wyrobek, Webentwickler in Deggendorf.',
+  path: '/impressum',
   updated: '2026',
   blocks: [
     {
@@ -55,6 +62,9 @@ export const impressum: LegalDoc = {
 
 export const datenschutz: LegalDoc = {
   title: 'Datenschutzerklärung',
+  description:
+    'Datenschutzerklärung von WyroTech – wie personenbezogene Daten auf wyro.tech verarbeitet werden (DSGVO).',
+  path: '/datenschutz',
   updated: '2026',
   blocks: [
     {

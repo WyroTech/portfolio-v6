@@ -52,7 +52,13 @@ export default function Seo({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
       {noindex && <meta name="robots" content="noindex, follow" />}
-      {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
+      {jsonLd && (
+        <script type="application/ld+json">
+          {/* Escape < and > so no graph string (FAQ answers, descriptions, …) can
+              ever close the inline script tag; JSON parsers decode </> back. */}
+          {JSON.stringify(jsonLd).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')}
+        </script>
+      )}
     </Helmet>
   )
 }

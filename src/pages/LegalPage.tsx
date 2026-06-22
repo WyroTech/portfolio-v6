@@ -12,7 +12,13 @@ export default function LegalPage({ doc }: { doc: LegalDoc }) {
 
   return (
     <main id="main" className="legal">
-      <Seo title={`${doc.title} — WyroTech`} description={doc.title} lang={lang} noindex />
+      <Seo
+        title={`${doc.title} — WyroTech`}
+        description={doc.description}
+        path={doc.path}
+        lang={lang}
+        noindex
+      />
       <div className="container legal__inner">
         <Link to={lp('/')} className="legal__back t-label">
           &larr; {t.legal.back}

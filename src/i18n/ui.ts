@@ -23,7 +23,7 @@ const en = {
   hero: {
     lineA: 'One developer.',
     lineB: 'Design & code.',
-    sub: 'I’m Andreas — I take your idea from first sketch to launch: web apps, dashboards, internal tools and prototypes.',
+    sub: 'I’m Andreas, a web developer in Deggendorf — I take your idea from first sketch to launch: B2B web apps, dashboards, internal tools and prototypes.',
     caption: 'Fig. 01 — Frontend, end to end',
   },
 
@@ -56,6 +56,12 @@ const en = {
   feedback: { eyebrow: 'Feedback', title: 'Words from the teams.' },
 
   work: { eyebrow: 'Selected Work', title: 'Interfaces, systems & products.' },
+
+  local: {
+    eyebrow: 'Based in Deggendorf',
+    title: 'Web developer in Deggendorf & Niederbayern.',
+    body: 'Based in Deggendorf, I work with companies across Niederbayern and Bavaria — and remotely with teams worldwide. One developer for design and code: B2B web apps, dashboards, SaaS and frontend rebuilds, on site or online.',
+  },
 
   contact: {
     label: 'Contact',
@@ -126,7 +132,7 @@ const de: Ui = {
   hero: {
     lineA: 'Ein Entwickler.',
     lineB: 'Design & Code.',
-    sub: 'Ich bin Andreas – ich bringe Ihre Idee von der ersten Skizze bis zum Launch: Web-Apps, Dashboards, interne Tools und Prototypen.',
+    sub: 'Ich bin Andreas, Webentwickler in Deggendorf – ich bringe Ihre Idee von der ersten Skizze bis zum Launch: B2B-Web-Apps, Dashboards, interne Tools und Prototypen.',
     caption: 'Abb. 01 – Frontend, durchgängig',
   },
 
@@ -159,6 +165,12 @@ const de: Ui = {
   feedback: { eyebrow: 'Feedback', title: 'Stimmen aus den Teams.' },
 
   work: { eyebrow: 'Ausgewählte Arbeiten', title: 'Interfaces, Systeme & Produkte.' },
+
+  local: {
+    eyebrow: 'Ansässig in Deggendorf',
+    title: 'Webentwickler in Deggendorf & Niederbayern.',
+    body: 'Mit Sitz in Deggendorf arbeite ich mit Unternehmen in ganz Niederbayern und Bayern – und remote mit Teams weltweit. Ein Entwickler für Design und Code: B2B-Web-Apps, Dashboards, SaaS und neu gebaute Frontends, vor Ort oder online.',
+  },
 
   contact: {
     label: 'Kontakt',
