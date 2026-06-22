@@ -19,11 +19,7 @@ export default function SelectedWorks() {
       <SectionHead eyebrow={t.work.eyebrow} count={count} title={t.work.title} />
       <div className="works-grid">
         {works.map((work, i) => (
-          <Reveal
-            key={work.slug}
-            className={`works-grid__item${work.featured ? ' works-grid__item--featured' : ''}`}
-            delay={(i % 2) * 70}
-          >
+          <Reveal key={work.slug} className="works-grid__item" delay={(i % 2) * 70}>
             <WorkCard work={work} index={i} />
           </Reveal>
         ))}

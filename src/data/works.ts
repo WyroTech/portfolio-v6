@@ -15,8 +15,6 @@ export interface Work {
   visual: VisualKind
   /** Data-as-headline: one metric shown on the work card */
   metric: { value: string; label: string }
-  /** Whether to feature this card at full width in the asymmetric grid */
-  featured?: boolean
   summary: string
   /** One-line outcome shown in the grid */
   outcome: string

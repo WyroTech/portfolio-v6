@@ -20,14 +20,9 @@ export default function WorkCard({ work, index }: WorkCardProps) {
   // A real datum (0→1, 1) gets the big tabular display; a phrase ("Angular · .NET",
   // "real-time") gets a smaller class so it never wraps as a giant fake headline.
   const metricIsData = /^[\d.,→%/+\-\s]+$/.test(work.metric.value.trim())
-  const stackCount = work.featured ? 3 : 2
 
   return (
-    <Link
-      to={lp(`/work/${work.slug}`)}
-      viewTransition
-      className={`work-card${work.featured ? ' work-card--featured' : ''}`}
-    >
+    <Link to={lp(`/work/${work.slug}`)} viewTransition className="work-card">
       <div className="work-card__thumb">
         <Visual seed={work.slug} kind={work.visual} className="work-card__visual" />
       </div>
@@ -35,7 +30,7 @@ export default function WorkCard({ work, index }: WorkCardProps) {
       <div className="work-card__top">
         <span className="t-label work-card__no">{no}</span>
         <span className="t-label work-card__tax">
-          {work.stack.slice(0, stackCount).join(' · ')} — {year}
+          {work.stack.slice(0, 2).join(' · ')} — {year}
         </span>
       </div>
 

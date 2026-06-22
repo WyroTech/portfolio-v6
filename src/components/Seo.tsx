@@ -27,6 +27,10 @@ export default function Seo({
   const enUrl = SITE_URL + path
   const deUrl = SITE_URL + dePath(path)
   const canonical = lang === 'de' ? deUrl : enUrl
+  const imageAlt =
+    lang === 'de'
+      ? 'Andreas Wyrobek — Webentwickler in Deggendorf (B2B-Web-Apps, Dashboards & SaaS)'
+      : 'Andreas Wyrobek — web developer in Deggendorf (B2B web apps, dashboards & SaaS)'
 
   return (
     <Helmet>
@@ -45,12 +49,14 @@ export default function Seo({
       <meta property="og:image" content={OG_IMAGE} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
       <meta property="og:locale:alternate" content={lang === 'de' ? 'en_US' : 'de_DE'} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE} />
+      <meta name="twitter:image:alt" content={imageAlt} />
       {noindex && <meta name="robots" content="noindex, follow" />}
       {jsonLd && (
         <script type="application/ld+json">

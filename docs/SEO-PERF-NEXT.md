@@ -24,8 +24,23 @@ waits on JS. Prerendering (#2) is the one lever that fixes the bulk of SEO **and
   links are language-correct via `lp()`; legal docs gained `description` + `path`, passed to `<Seo>`.
   (Both remain `noindex` — see note below if you want Impressum indexed for NAP.)
 - ✅ **#8 Defer off the critical path** — Vercel `<Analytics/>` + `<SpeedInsights/>` are now `lazy()` +
-  mounted only after `requestIdleCallback` (timeout fallback); they're split into their own chunks, out of the
-  initial JS. Lenis init is likewise deferred to `requestIdleCallback` (reduced-motion guard kept).
+  mounted on first interaction OR `requestIdleCallback` (timeout fallback); they're split into their own chunks,
+  out of the initial JS. Lenis init is likewise deferred to `requestIdleCallback` (reduced-motion guard kept).
+- ✅ **`og:image:alt` + `twitter:image:alt`** added to `Seo.tsx` (localized EN/DE) — per-route OG cards keep
+  alt text, matching the static head.
+- ✅ **Removed the dead `featured` path** — the field set on zero works, plus its branches in `WorkCard.tsx`,
+  `SelectedWorks.tsx`, and the `--featured` SCSS (uniform grid was already the decided design).
+
+### Verified live (vite preview + browser, build of 2026-06-22)
+`/de`: German title, `html lang=de`, JSON-LD `@graph` = Person/WebSite/ProfessionalService/**FAQPage** (5 Qs,
+`url`+`isPartOf` wired), visible `<h2>` "Webentwickler in Deggendorf & Niederbayern.", exactly one `<h1>`, and
+**no `</script>` breakout** in the JSON-LD (escape confirmed). `/de/impressum`: correct title, `lang=de`,
+`noindex, follow`, canonical `https://wyro.tech/de/impressum`, German content, language-correct back link.
+
+⚠️ **Confirmed issue (feeds #2):** every OG/Twitter/`description` tag is **duplicated** at runtime — the static
+English tag from `index.html` (#1) AND helmet's lang-aware one both exist (2× `og:title`, `og:description`,
+`og:locale`, `og:image:alt`, … on every route). It's pre-existing (static-head interim vs. client-side helmet),
+affects all such tags, and JS-blind unfurlers see only the English static set even on `/de`. See #2 below.
 
 ## DEFERRED (revisit) — #2 Prerender/SSG
 Biggest lever (LCP −1 to −2.5s on mobile + correct indexing/unfurls for all crawlers). **Deferred this session
@@ -46,6 +61,12 @@ by choice** (avoids adding a Chromium build dependency for now).
     `outerHTML`.
   - Switch `createRoot` → `hydrateRoot` in `src/main.tsx` so the client hydrates the snapshot.
 - 2nd choice: `@prerenderer/prerenderer` + `@prerenderer/renderer-puppeteer` (maintained wrapper, same crawl).
+- ⚠️ **Must reconcile the static `<head>` (#1) as part of this.** A Puppeteer `outerHTML` snapshot captures BOTH
+  the static `index.html` tags and helmet's injected ones → it would bake the duplicate OG/description/locale
+  tags (confirmed above) straight into every prerendered page. Fix one of two ways: (a) strip the helmet-managed
+  tags (title, description, all `og:*`/`twitter:*`) out of static `index.html` so only helmet's correct per-route
+  tags remain in the snapshot — safe once prerender guarantees real HTML for crawlers; or (b) have the prerender
+  script de-dupe each managed tag before writing. Option (a) is cleaner.
 
 ## #7 — RESOLVED as "no change"
 Dropping `react-helmet-async` for React 19 native `<title>`/`<meta>` hoisting was on the list, but: (a) helmet@3

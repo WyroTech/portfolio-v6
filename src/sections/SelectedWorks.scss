@@ -18,7 +18,4 @@
   .works-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .works-grid__item--featured {
-    grid-column: 1 / -1;
-  }
 }
