@@ -194,6 +194,35 @@ const en: Work[] = [
     ],
     link: { label: 'Visit the site', href: 'https://www.logopede-mitrisavelo.com/' },
   },
+  {
+    slug: 'wyrotech-portfolio',
+    title: 'WyroTech — Portfolio Site',
+    client: 'Personal project',
+    year: '2025',
+    role: 'Design & Build',
+    category: 'Website · Personal Brand',
+    stack: ['Astro', 'React', 'TypeScript'],
+    visual: 'contours',
+    shot: '/work/wyrotech-portfolio.webp',
+    summary:
+      'My previous personal portfolio — a bilingual, dark-themed single-page site built with Astro and React islands. The direct predecessor to the site you are on now.',
+    seoDescription:
+      'The previous WyroTech portfolio — a bilingual, dark-themed one-page site built with Astro and React islands. A WyroTech case study.',
+    outcome: 'My own brand online — a fast, bilingual portfolio I designed and shipped end to end.',
+    problem:
+      'I needed a personal site that presented my work and skills clearly, in both German and English, and stayed fast and easy to maintain.',
+    approach: [
+      'Designed and built the site end to end as a personal-brand portfolio.',
+      'Used Astro with React islands to keep the page fast and mostly static.',
+      'Made it fully bilingual (DE/EN) with a dark, focused visual style.',
+      'Laid out home, skills, career and contact on a single page.',
+    ],
+    results: [
+      'A live, bilingual portfolio that shipped as my personal site.',
+      'The direct predecessor to the portfolio you are reading now.',
+    ],
+    link: { label: 'Visit the site', href: 'https://portfolio-wyrotech.vercel.app/' },
+  },
 ]
 
 const de: Work[] = [
@@ -350,6 +379,35 @@ const de: Work[] = [
       'Als persönliches Projekt für Familie & Freunde gebaut.',
     ],
     link: { label: 'Zur Website', href: 'https://www.logopede-mitrisavelo.com/' },
+  },
+  {
+    slug: 'wyrotech-portfolio',
+    title: 'WyroTech — Portfolio-Seite',
+    client: 'Eigenes Projekt',
+    year: '2025',
+    role: 'Design & Umsetzung',
+    category: 'Website · Eigenmarke',
+    stack: ['Astro', 'React', 'TypeScript'],
+    visual: 'contours',
+    shot: '/work/wyrotech-portfolio.webp',
+    summary:
+      'Mein vorheriges persönliches Portfolio – eine zweisprachige, dunkel gestaltete One-Page-Site mit Astro und React-Islands. Der direkte Vorgänger dieser Seite.',
+    seoDescription:
+      'Das vorherige WyroTech-Portfolio – eine zweisprachige, dunkle One-Page-Site mit Astro und React-Islands. Eine WyroTech-Case-Study.',
+    outcome: 'Die eigene Marke online – ein schnelles, zweisprachiges Portfolio, durchgängig selbst gestaltet und umgesetzt.',
+    problem:
+      'Ich brauchte eine persönliche Seite, die meine Arbeit und Fähigkeiten klar zeigt – auf Deutsch und Englisch – und dabei schnell und wartbar bleibt.',
+    approach: [
+      'Die Seite durchgängig als persönliches Marken-Portfolio gestaltet und gebaut.',
+      'Astro mit React-Islands genutzt, um die Seite schnell und überwiegend statisch zu halten.',
+      'Vollständig zweisprachig umgesetzt (DE/EN) mit einem dunklen, fokussierten Look.',
+      'Startseite, Fähigkeiten, Werdegang und Kontakt auf einer Seite angeordnet.',
+    ],
+    results: [
+      'Ein live geschaltetes, zweisprachiges Portfolio als meine persönliche Seite.',
+      'Der direkte Vorgänger des Portfolios, das du gerade liest.',
+    ],
+    link: { label: 'Zur Website', href: 'https://portfolio-wyrotech.vercel.app/' },
   },
 ]
 
