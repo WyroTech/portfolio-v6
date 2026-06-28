@@ -1,9 +1,8 @@
-# WyroTech — portfolio v6
+# WyroTech — portfolio
 
 Frontend-engineering & UX services site for **Andreas Wyrobek** (WyroTech).
-Editorial black-and-white aesthetic inspired by [forai.design](https://forai.design),
-sharpened with patterns crawled from ~50 best-in-class studio portfolios
-(Unseen, DNCO, Ragged Edge, Bielke & Yang, …).
+A typographic, editorial black-and-white design system — display type, generous
+whitespace, and motion used sparingly.
 
 ## Stack
 
