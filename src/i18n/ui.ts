@@ -23,7 +23,7 @@ const en = {
   hero: {
     lineA: 'One developer.',
     lineB: 'Design & code.',
-    sub: 'I’m Andreas, a web developer in Deggendorf — I take your idea from first sketch to launch: B2B web apps, dashboards, internal tools and prototypes.',
+    sub: 'For over ten years I’ve built B2B applications in Angular and .NET that get used every day. Right now there’s room for a new project.',
     caption: 'Fig. 01 — Frontend, end to end',
   },
 
@@ -134,7 +134,7 @@ const de: Ui = {
   hero: {
     lineA: 'Ein Entwickler.',
     lineB: 'Design & Code.',
-    sub: 'Ich bin Andreas, Webentwickler in Deggendorf – ich bringe Ihre Idee von der ersten Skizze bis zum Launch: B2B-Web-Apps, Dashboards, interne Tools und Prototypen.',
+    sub: 'Seit über zehn Jahren baue ich B2B-Anwendungen in Angular und .NET, mit denen täglich gearbeitet wird. Gerade ist Platz für ein neues Projekt.',
     caption: 'Abb. 01 – Frontend, durchgängig',
   },
 
