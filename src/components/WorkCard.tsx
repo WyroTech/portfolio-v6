@@ -17,9 +17,6 @@ export default function WorkCard({ work, index }: WorkCardProps) {
   const t = loc(ui, lang)
   const no = String(index + 1).padStart(2, '0')
   const year = work.year.split('—').pop()?.trim() ?? work.year
-  // A real datum (0→1, 1) gets the big tabular display; a phrase ("Angular · .NET",
-  // "real-time") gets a smaller class so it never wraps as a giant fake headline.
-  const metricIsData = /^[\d.,→%/+\-\s]+$/.test(work.metric.value.trim())
 
   return (
     <Link to={lp(`/work/${work.slug}`)} viewTransition className="work-card">
@@ -57,14 +54,6 @@ export default function WorkCard({ work, index }: WorkCardProps) {
       </div>
 
       <div className="work-card__foot">
-        <div className="work-card__metric">
-          <span
-            className={`work-card__metric-value${metricIsData ? '' : ' work-card__metric-value--text'}`}
-          >
-            {work.metric.value}
-          </span>
-          <span className="work-card__metric-label t-label">{work.metric.label}</span>
-        </div>
         <span className="work-card__cta" aria-hidden="true">
           {t.caseStudy.view}
           <span className="work-card__arrows">

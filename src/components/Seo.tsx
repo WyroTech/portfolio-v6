@@ -11,6 +11,8 @@ interface SeoProps {
   path?: string
   lang?: Lang
   noindex?: boolean
+  /** Open Graph type; "article" for case-study pages, "website" elsewhere */
+  ogType?: string
   jsonLd?: object
 }
 
@@ -22,6 +24,7 @@ export default function Seo({
   path = '/',
   lang = 'en',
   noindex,
+  ogType = 'website',
   jsonLd,
 }: SeoProps) {
   const enUrl = SITE_URL + path
@@ -41,7 +44,7 @@ export default function Seo({
       {!noindex && <link rel="alternate" hrefLang="en" href={enUrl} />}
       {!noindex && <link rel="alternate" hrefLang="de" href={deUrl} />}
       {!noindex && <link rel="alternate" hrefLang="x-default" href={enUrl} />}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="WyroTech" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

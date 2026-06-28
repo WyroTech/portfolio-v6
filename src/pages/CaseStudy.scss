@@ -80,37 +80,6 @@
   font-size: var(--fs-body);
 }
 
-.case__metric {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  text-align: right;
-  flex: 0 1 auto;
-  min-width: 0;
-}
-
-.case__metric-value {
-  font-family: var(--font-display);
-  font-weight: var(--wght-display);
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: var(--ls-display);
-  font-variant-numeric: tabular-nums;
-}
-
-/* phrase metric values keep a sane size and wrap instead of colliding with the meta grid */
-.case__metric-value--text {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
-  letter-spacing: var(--ls-heading);
-  font-variant-numeric: normal;
-  overflow-wrap: anywhere;
-}
-
-.case__metric-label {
-  color: var(--c-mute);
-}
-
 .case__link {
   display: inline-flex;
   align-items: center;

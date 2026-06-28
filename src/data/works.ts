@@ -13,8 +13,6 @@ export interface Work {
   stack: string[]
   /** generative artwork style for this project */
   visual: VisualKind
-  /** Data-as-headline: one metric shown on the work card */
-  metric: { value: string; label: string }
   summary: string
   /** One-line outcome shown in the grid */
   outcome: string
@@ -36,7 +34,7 @@ export interface Work {
  * personal project and named freely.
  *
  * Slugs are language-neutral and shared across locales. Keep the German `de`
- * array in the same order, with the same slugs/visuals/metric values — translate
+ * array in the same order, with the same slugs/visuals — translate
  * only the prose (title may stay, category/role/summary/problem/approach/results).
  */
 const en: Work[] = [
@@ -49,7 +47,6 @@ const en: Work[] = [
     category: 'SaaS · Data Analytics',
     stack: ['Angular', 'TypeScript', 'RxJS', 'Figma', 'Azure'],
     visual: 'flow',
-    metric: { value: '0→1', label: 'on-prem → self-serve SaaS' },
     summary:
       'A SAP data-analytics product reimagined as a cloud-native SaaS on Azure — from the first Figma mockups to a production Angular interface.',
     outcome: 'Turned an on-prem analytics tool into a self-serve SaaS — one product non-technical analysts can run without training.',
@@ -59,7 +56,7 @@ const en: Work[] = [
       'Helped shape the product as a cloud-native SaaS on Azure.',
       'Designed the end-to-end UX and high-fidelity UI in Figma — flows, states and data-heavy views.',
       'Built the production interface in Angular with a typed, reactive (RxJS) architecture.',
-      'Set UI patterns so every new analytics feature shipped consistent — no drift, no rework.',
+      'Set UI patterns so every new analytics feature shipped consistently — no drift, no rework.',
     ],
     results: [
       'Analysts work dense SAP data without engineering help — and without a training program.',
@@ -76,7 +73,6 @@ const en: Work[] = [
     category: 'Design System · Portal',
     stack: ['Angular', 'TypeScript', 'Sass', 'Figma'],
     visual: 'contours',
-    metric: { value: '1', label: 'one source of truth, design → code' },
     summary:
       'A customer portal built on a purpose-made design system — defined in Figma and implemented end-to-end in Angular.',
     outcome: 'Ship portal features fast, with zero visual drift — one design system, design to code.',
@@ -101,7 +97,6 @@ const en: Work[] = [
     category: 'Analytics Platform · Web App',
     stack: ['SAP', 'Microsoft Fabric', 'Power BI', 'Angular', '.NET', 'TypeScript'],
     visual: 'waves',
-    metric: { value: 'SAP→BI', label: 'raw data to dashboards' },
     summary:
       'An enterprise platform that extracts data from SAP, models it in Microsoft Fabric, and surfaces it through Power BI and a custom Angular interface.',
     outcome: 'Turned locked-away SAP data into Power BI dashboards the business can actually use — through a clean, maintainable frontend.',
@@ -127,7 +122,6 @@ const en: Work[] = [
     category: 'Desktop · Electron',
     stack: ['Electron', 'TypeScript', 'SAP GUI'],
     visual: 'harmonograph',
-    metric: { value: '1-click', label: 'SAP data access' },
     summary:
       'A desktop utility that opens SAP data inside the SAP GUI with a single click — removing a tedious, repetitive workflow.',
     outcome: 'A daily multi-step SAP chore, gone — one click instead.',
@@ -147,7 +141,6 @@ const en: Work[] = [
     category: 'IoT · Robotics',
     stack: ['ESP32', 'Python', 'WebSockets', 'Arduino'],
     visual: 'flow',
-    metric: { value: 'real-time', label: 'WebSocket control' },
     summary:
       'A smart robot car controlled in real time over WebSockets — an ESP32 and a Python backend talking JSON to an Arduino, with a live camera stream to the browser.',
     outcome: 'Real-time robot control over WebSockets — ESP32 + Python.',
@@ -171,7 +164,6 @@ const en: Work[] = [
     stack: ['React'],
     visual: 'ripple',
     shot: '/work/mitrisa-velo.webp',
-    metric: { value: 'Family', label: 'a build for family & friends' },
     summary:
       'A clean single-page website for a speech-language therapist — designed and built end to end in React, as a project for family & friends.',
     outcome: 'A speech therapist’s practice online — a simple site to show her services and get in touch.',
@@ -200,7 +192,6 @@ const de: Work[] = [
     category: 'SaaS · Datenanalyse',
     stack: ['Angular', 'TypeScript', 'RxJS', 'Figma', 'Azure'],
     visual: 'flow',
-    metric: { value: '0→1', label: 'von On-Prem zu Self-Service-SaaS' },
     summary:
       'Ein SAP-Datenanalyse-Produkt, neu gedacht als cloud-native SaaS-Anwendung auf Azure – von den ersten Figma-Mockups bis zum produktiven Angular-Interface.',
     outcome: 'Aus einem On-Prem-Analysewerkzeug ein Self-Service-SaaS gemacht – ein Produkt, das Analysten ohne technischen Hintergrund ohne Schulung bedienen.',
@@ -227,7 +218,6 @@ const de: Work[] = [
     category: 'Designsystem · Portal',
     stack: ['Angular', 'TypeScript', 'Sass', 'Figma'],
     visual: 'contours',
-    metric: { value: '1', label: 'eine Referenz, Design → Code' },
     summary:
       'Ein Kundenportal auf einem eigens entwickelten Designsystem – in Figma definiert und durchgängig in Angular umgesetzt.',
     outcome: 'Portal-Features schnell ausliefern, ohne visuelle Abweichung – ein Designsystem, von Design bis Code.',
@@ -252,7 +242,6 @@ const de: Work[] = [
     category: 'Analytics-Plattform · Web-App',
     stack: ['SAP', 'Microsoft Fabric', 'Power BI', 'Angular', '.NET', 'TypeScript'],
     visual: 'waves',
-    metric: { value: 'SAP→BI', label: 'Rohdaten zu Dashboards' },
     summary:
       'Eine Enterprise-Plattform, die Daten aus SAP extrahiert, sie in Microsoft Fabric modelliert und über Power BI und eine eigene Angular-Oberfläche bereitstellt.',
     outcome: 'Aus eingeschlossenen SAP-Daten wurden Power-BI-Dashboards, mit denen die Fachbereiche wirklich arbeiten können – über ein klares, wartbares Frontend.',
@@ -278,7 +267,6 @@ const de: Work[] = [
     category: 'Desktop · Electron',
     stack: ['Electron', 'TypeScript', 'SAP GUI'],
     visual: 'harmonograph',
-    metric: { value: '1-click', label: 'Zugriff auf SAP-Daten' },
     summary:
       'Ein Desktop-Tool, das SAP-Daten mit einem einzigen Klick im SAP GUI öffnet – und einen mühsamen, sich wiederholenden Ablauf ersetzt.',
     outcome: 'Eine tägliche, mehrstufige SAP-Prozedur – weg, ein Klick stattdessen.',
@@ -298,7 +286,6 @@ const de: Work[] = [
     category: 'IoT · Robotik',
     stack: ['ESP32', 'Python', 'WebSockets', 'Arduino'],
     visual: 'flow',
-    metric: { value: 'real-time', label: 'Steuerung per WebSocket' },
     summary:
       'Ein smartes Roboterauto, in Echtzeit über WebSockets gesteuert – ein ESP32 und ein Python-Backend sprechen JSON mit einem Arduino, mit einem Live-Kamerastream in den Browser.',
     outcome: 'Echtzeit-Robotersteuerung über WebSockets – ESP32 + Python.',
@@ -322,7 +309,6 @@ const de: Work[] = [
     stack: ['React'],
     visual: 'ripple',
     shot: '/work/mitrisa-velo.webp',
-    metric: { value: 'Familie', label: 'ein Projekt für Familie & Freunde' },
     summary:
       'Eine klare One-Page-Website für eine Logopädin – durchgängig in React gestaltet und gebaut, als Projekt für Familie & Freunde.',
     outcome: 'Die Praxis einer Logopädin online – eine einfache Seite, die ihre Leistungen zeigt und Kontakt ermöglicht.',

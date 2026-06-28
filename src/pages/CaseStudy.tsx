@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getWork, getWorks } from '../data/works'
 import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
@@ -7,6 +7,7 @@ import { ui } from '../i18n/ui'
 import Reveal from '../components/ui/Reveal'
 import Visual from '../components/ui/Visual'
 import Seo from '../components/Seo'
+import NotFound from './NotFound'
 import './CaseStudy.scss'
 
 export default function CaseStudy() {
@@ -15,12 +16,11 @@ export default function CaseStudy() {
   const t = loc(ui, lang)
   const work = slug ? getWork(slug, lang) : undefined
 
-  if (!work) return <Navigate to={lp('/')} replace />
+  if (!work) return <NotFound />
 
   const list = getWorks(lang)
   const idx = list.findIndex((w) => w.slug === work.slug)
   const next = list[(idx + 1) % list.length]
-  const metricIsData = /^[\d.,→%/+\-\s]+$/.test(work.metric.value.trim())
 
   return (
     <main id="main" className="case">
@@ -29,6 +29,7 @@ export default function CaseStudy() {
         description={work.summary}
         path={`/work/${work.slug}`}
         lang={lang}
+        ogType="article"
       />
       <article>
         <header className="case__hero container">
@@ -81,17 +82,14 @@ export default function CaseStudy() {
               <dd>{work.stack.join(' · ')}</dd>
             </div>
           </dl>
-          <div className="case__metric">
-            <span
-              className={`case__metric-value${metricIsData ? '' : ' case__metric-value--text'}`}
-            >
-              {work.metric.value}
-            </span>
-            <span className="case__metric-label t-label">{work.metric.label}</span>
-          </div>
         </Reveal>
 
         <div className="case__body container">
+          <Reveal as="section" className="case__block">
+            <h2 className="t-label case__block-label">{t.caseStudy.outcome}</h2>
+            <p className="case__block-text t-h3">{work.outcome}</p>
+          </Reveal>
+
           <Reveal as="section" className="case__block">
             <h2 className="t-label case__block-label">{t.caseStudy.problem}</h2>
             <p className="case__block-text t-h3">{work.problem}</p>
@@ -107,7 +105,7 @@ export default function CaseStudy() {
           </Reveal>
 
           <Reveal as="section" className="case__block">
-            <h2 className="t-label case__block-label">{t.caseStudy.outcome}</h2>
+            <h2 className="t-label case__block-label">{t.caseStudy.results}</h2>
             <ul className="case__list">
               {work.results.map((point) => (
                 <li key={point}>{point}</li>
