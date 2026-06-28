@@ -29,6 +29,16 @@
   border-bottom-color: var(--hairline);
 }
 
+/* While the mobile menu is open, drop the bar's backdrop-filter. backdrop-filter
+   makes .nav a containing block for the position:fixed .nav__overlay, which then
+   sizes against the nav-h-tall bar instead of the viewport — collapsing the
+   overlay to 0 height once scrolled, so its background disappears (links overflow
+   and stay visible). Removing the filter while open keeps the overlay viewport-fixed. */
+.nav.is-open {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 /* Mobile: brand left, toggle right */
 .nav__bar {
   display: flex;
@@ -130,6 +140,7 @@
 }
 
 .nav__lang-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -139,18 +150,46 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 
+.nav__lang-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  /* sit near the glyph inside the 44px tap target, matching the primary links */
+  bottom: 0.5rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
 .nav__lang-link:hover,
 .nav__lang-link:focus-visible {
   color: var(--fg);
 }
 
+.nav__lang-link:hover::after,
+.nav__lang-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Active language: full --fg + persistent underline carry the "current" state.
+   No font-weight bump — that would reflow the fixed-width cell (CLS). */
 .nav__lang-link.is-active {
   color: var(--fg);
-  font-weight: 600;
+}
+
+.nav__lang-link.is-active::after {
+  transform: scaleX(1);
+  background: color-mix(in srgb, var(--fg) 55%, transparent);
 }
 
 /* ---- Contact CTA (forai-style action, sharp/editorial) ---- */
 .nav__cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -159,11 +198,12 @@
   font-family: var(--font-mono);
   font-size: var(--fs-small);
   letter-spacing: 0.01em;
-  color: var(--bg);
-  background: var(--fg);
+  color: var(--fg);
+  background: var(--bg);
   border: 1px solid var(--fg);
   /* magnetic pull — vars written by useMagnetic, default 0 so it's inert
-     until the cursor enters (and on coarse-pointer / reduced-motion). */
+     until the cursor enters (and on coarse-pointer / reduced-motion).
+     overflow:hidden clips the ::before fill, never the element's own transform. */
   transform: translate(var(--mx, 0), var(--my, 0));
   transition:
     transform var(--dur) var(--ease-out),
@@ -171,10 +211,30 @@
     color var(--dur-fast) var(--ease-out);
 }
 
-.nav__cta:hover,
-.nav__cta:focus-visible {
-  background: transparent;
-  color: var(--fg);
+/* Fill-wipe: a solid panel sweeps in from the left on hover/focus, behind the
+   label (z-index:-1, contained by isolation:isolate) and inside the 1px border. */
+.nav__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.nav__cta:hover::before,
+.nav__cta:focus-visible::before {
+  transform: scaleX(1);
+}
+
+/* Fixed paper-white + difference = always the inverse of whatever sits behind
+   it, so the label stays legible at rest and over the sweep, on light bars and
+   on .nav--on-dark alike (tokens for the surface flip, the label does not). */
+.nav__cta-label {
+  color: var(--c-paper);
+  mix-blend-mode: difference;
 }
 
 .nav__dot {
@@ -266,6 +326,25 @@
   letter-spacing: var(--ls-heading);
 }
 
+@keyframes nav-overlay-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The overlay toggles via hidden/inert (a display change), so a transition
+   never fires — drive the staggered entrance with an animation keyed off the
+   per-link --i index written on each link in Nav.tsx. */
+.nav.is-open .nav__overlay-links a {
+  animation: nav-overlay-in var(--dur) var(--ease-out) both;
+  animation-delay: calc(var(--i) * 60ms);
+}
+
 .nav__overlay-no {
   color: var(--c-mute);
 }
@@ -331,9 +410,38 @@
       background-color var(--dur-fast) var(--ease-out),
       color var(--dur-fast) var(--ease-out);
   }
+  /* CTA fill-wipe → plain background crossfade: drop the sweeping panel + the
+     blend, and swap surface/label tokens straight on hover instead. */
+  .nav__cta::before {
+    display: none;
+  }
+  .nav__cta-label {
+    color: var(--fg);
+    mix-blend-mode: normal;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .nav__cta:hover,
+  .nav__cta:focus-visible {
+    background: var(--fg);
+  }
+  .nav__cta:hover .nav__cta-label,
+  .nav__cta:focus-visible .nav__cta-label {
+    color: var(--bg);
+  }
   /* Active-section underline is a state indicator, so keep it visible — but
      snap it in with no transition rather than animating. */
   .nav__links a[aria-current='location']::after {
     transition: none;
+  }
+  /* Language underline likewise stays visible for the active locale; only its
+     transition is removed. */
+  .nav__lang-link::after {
+    transition: none;
+  }
+  /* Overlay links: skip the staggered entrance, land on the end state. */
+  .nav.is-open .nav__overlay-links a {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

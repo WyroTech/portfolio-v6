@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import type { Work } from '../data/works'
+import { useMagnetic } from '../hooks/useMagnetic'
 import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
@@ -17,9 +18,10 @@ export default function WorkCard({ work, index }: WorkCardProps) {
   const t = loc(ui, lang)
   const no = String(index + 1).padStart(2, '0')
   const year = work.year.split('—').pop()?.trim() ?? work.year
+  const cardRef = useMagnetic<HTMLAnchorElement>(0.08, 6)
 
   return (
-    <Link to={lp(`/work/${work.slug}`)} viewTransition className="work-card">
+    <Link ref={cardRef} to={lp(`/work/${work.slug}`)} viewTransition className="work-card">
       <div className="work-card__thumb">
         {work.shot ? (
           <img
@@ -55,7 +57,7 @@ export default function WorkCard({ work, index }: WorkCardProps) {
 
       <div className="work-card__foot">
         <span className="work-card__cta" aria-hidden="true">
-          {t.caseStudy.view}
+          <span className="work-card__cta-text">{t.caseStudy.view}</span>
           <span className="work-card__arrows">
             <span>&rarr;</span>
             <span>&rarr;</span>

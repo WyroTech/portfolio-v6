@@ -171,7 +171,7 @@ export default function Nav() {
             href={`${home}${contact.hash}`}
             onClick={(e) => onNavClick(e, contact.hash)}
           >
-            {t.nav.contact}
+            <span className="nav__cta-label">{t.nav.contact}</span>
           </a>
         </div>
 

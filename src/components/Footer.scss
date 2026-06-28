@@ -88,6 +88,17 @@
   display: inline-block;
 }
 
+/* trailing arrow nudges right in lockstep with the underline retract */
+.footer__cta-arrow {
+  display: inline-block;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.footer__cta:hover .footer__cta-arrow,
+.footer__cta:focus-visible .footer__cta-arrow {
+  transform: translateX(0.3em);
+}
+
 .footer__reply {
   display: block;
   margin-top: var(--space-4);
@@ -192,6 +203,17 @@
   color: var(--fg);
 }
 
+/* the ↑ lifts on hover, echoing the scroll-to-top action */
+.footer__top-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.footer__top:hover .footer__top-arrow,
+.footer__top:focus-visible .footer__top-arrow {
+  transform: translateY(-3px);
+}
+
 /* ── 3 — MASTHEAD WORDMARK: the closing signature ───────────────── */
 .footer__wordmark {
   border-top: 1px solid var(--hairline); /* the memorable closing rule */
@@ -217,6 +239,13 @@
   line-height: 0.92; /* contains the glyphs (incl. the "y" descender) cleanly */
   letter-spacing: var(--ls-display);
   white-space: nowrap; /* one line; scales down via the clamp on small screens */
+  /* ink-wipe: the signature paints in left→right on reveal */
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur-slow) var(--ease-out);
+}
+
+.footer__wordmark-text.is-revealed {
+  clip-path: inset(0 0 0 0);
 }
 
 @media (min-width: 768px) {
@@ -256,8 +285,22 @@
     transform: translate(0, -50%);
     transition: none;
   }
-  /* masthead wordmark: no fade */
+  /* masthead wordmark: no ink-wipe, paint in full */
   .footer__wordmark-text {
+    clip-path: none;
     transition: none;
+  }
+  /* trailing arrows: keep colour state, drop the nudge/lift */
+  .footer__cta-arrow,
+  .footer__top-arrow {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* never let the signature stay clipped on paper */
+@media print {
+  .footer__wordmark-text {
+    clip-path: none;
   }
 }

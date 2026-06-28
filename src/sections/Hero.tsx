@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { site } from '../data/site'
 import { useClock } from '../hooks/useClock'
+import { useParallax } from '../hooks/useParallax'
 import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
@@ -25,6 +26,10 @@ export default function Hero() {
   const time = useClock(site.timezone)
   const { lang } = useLang()
   const t = loc(ui, lang)
+
+  // Scroll-exit parallax for the right-hand visual panel only — never the LCP
+  // headline. Self-gates under reduced-motion and caps displacement at ±24px.
+  const visualRef = useParallax<HTMLDivElement>()
 
   // Masked per-line entrance: render hidden on mount, then flip on the next frame
   // so the clip-path rise plays once. Reduced-motion is handled in CSS (lines show
@@ -80,7 +85,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hero__visual">
+          <div className="hero__visual" ref={visualRef}>
             <Visual seed="wyrotech-hero" kind="flow" />
             <span className="hero__visual-cap t-label">{t.hero.caption}</span>
           </div>

@@ -1,0 +1,24 @@
+/* ============================================================
+   View Transitions — tune the cross-route fade + shared-element morph
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--dur-fast);
+    animation-timing-function: var(--ease-out);
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: var(--dur);
+    animation-timing-function: var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}

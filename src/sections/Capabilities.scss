@@ -31,7 +31,8 @@
   transform: translateY(8px);
   transition:
     opacity var(--dur) var(--ease-out),
-    transform var(--dur) var(--ease-out);
+    transform var(--dur) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
   transition-delay: calc(var(--i, 0) * 30ms);
 }
 
@@ -40,12 +41,27 @@
   transform: none;
 }
 
+/* spotlight: dim sibling logos while the wall is hovered, lift the hovered one
+   back to full. shallow dim — labels are real text naming the stack. */
+.tech-grid:hover .tech-grid__item {
+  opacity: 0.5;
+}
+
+.tech-grid:hover .tech-grid__item:hover {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* collapse the stagger to instant, consistent with useReveal */
   .tech-grid__item {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* keep the spotlight inert — no dimming without motion */
+  .tech-grid:hover .tech-grid__item {
+    opacity: 1;
   }
 }
 

@@ -1,6 +1,7 @@
 .faq {
   display: flex;
   flex-direction: column;
+  counter-reset: faq;
 }
 
 .faq__item {
@@ -9,6 +10,26 @@
   gap: var(--space-3);
   padding-block: clamp(1.5rem, 3vw, 2.25rem);
   border-top: 1px solid var(--hairline);
+  counter-increment: faq;
+  position: relative;
+}
+
+/* Crisp full-ink hairline that draws across the row top on hover. */
+.faq__item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.faq__item:hover::after {
+  transform: scaleX(1);
 }
 
 .faq__item:last-child {
@@ -23,6 +44,19 @@
   letter-spacing: var(--ls-heading);
 }
 
+/* Leading-zero index counter that ticks muted -> ink on hover. */
+.faq__q::before {
+  content: counter(faq, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--c-mute);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.faq__item:hover .faq__q::before {
+  color: var(--fg);
+}
+
 .faq__a {
   color: var(--fg-soft);
   max-width: 62ch;
@@ -32,5 +66,15 @@
   .faq__item {
     grid-template-columns: 0.9fr 1.1fr;
     gap: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__q::before {
+    transition: none;
+  }
+
+  .faq__item::after {
+    transition: none;
   }
 }

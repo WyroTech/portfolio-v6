@@ -8,6 +8,7 @@
 }
 
 .proc-path {
+  position: relative;
   display: flex;
   flex-direction: column;
   --proc-gap: clamp(2.25rem, 5vw, 3.75rem);
@@ -118,6 +119,25 @@
   transform: translateX(-50%) scaleY(1);
 }
 
+/* scroll-progress fill — a solid wayfinding line layered OVER the faint
+   once-drawn rails, tracking the reader 1:1 down the node column. Sits above
+   the rails (z-index) but below the nodes (later in DOM at the same z-index),
+   so each node masks it into rail-aligned segments. No transition by design —
+   it tracks scroll position, so it stays live under reduced-motion. */
+.proc-path::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--proc-node) / 2);
+  z-index: 1;
+  width: 1px;
+  background: var(--fg);
+  transform: translateX(-50%) scaleY(var(--proc-progress, 0));
+  transform-origin: top;
+  pointer-events: none;
+}
+
 /* the active step under the cursor fills — a small interactive accent */
 .proc:hover .proc__node {
   background: var(--fg);
@@ -132,6 +152,7 @@
 }
 
 .proc__title {
+  position: relative;
   font-family: var(--font-display);
   font-weight: var(--wght-display);
   font-size: var(--fs-h3);
@@ -139,10 +160,34 @@
   letter-spacing: var(--ls-heading);
 }
 
+/* whole-row hover: a left-anchored underline draws across the title */
+.proc__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.proc:hover .proc__title::after {
+  transform: scaleX(1);
+}
+
 .proc__detail {
   margin-top: var(--space-3);
   color: var(--fg-soft);
   max-width: 46ch;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/* whole-row hover: the supporting copy brightens to full foreground */
+.proc:hover .proc__detail {
+  color: var(--fg);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -153,6 +198,10 @@
   }
   .proc:not(:last-child) .proc__rail::after {
     transform: translateX(-50%);
+    transition: none;
+  }
+  /* keep the hover colour swaps; just drop the underline's motion */
+  .proc__title::after {
     transition: none;
   }
 }

@@ -50,7 +50,9 @@
 }
 
 .work-card__visual {
-  transition: transform var(--dur-slow) var(--ease-out);
+  scale: 1;
+  translate: var(--mx, 0) var(--my, 0);
+  transition: scale var(--dur-slow) var(--ease-out);
 }
 
 /* real screenshot variant — fills the 16/10 thumb, no crop on matching ratio */
@@ -63,7 +65,7 @@
 }
 
 .work-card:hover .work-card__visual {
-  transform: scale(1.04);
+  scale: 1.04;
 }
 
 .work-card__top {
@@ -130,6 +132,28 @@
   flex: none;
 }
 
+.work-card__cta-text {
+  position: relative;
+}
+
+.work-card__cta-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.work-card:hover .work-card__cta-text::after,
+.work-card:focus-visible .work-card__cta-text::after {
+  transform: scaleX(1);
+}
+
 .work-card__arrows {
   position: relative;
   display: inline-block;
@@ -181,6 +205,9 @@
     transition: none;
   }
   .work-card:hover .work-card__visual {
-    transform: none;
+    scale: 1;
+  }
+  .work-card__cta-text::after {
+    transition: none;
   }
 }

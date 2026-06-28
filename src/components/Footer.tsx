@@ -4,11 +4,18 @@ import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
 import { usePaintTime } from '../hooks/usePaintTime'
+import { useReveal } from '../hooks/useReveal'
 import { scrollToTop } from '../lib/scrollToHash'
 import './Footer.scss'
 
+// The masthead wordmark sits at the very bottom of the page; useReveal's default
+// rootMargin shrinks the trigger zone up from the bottom, so a bottom-anchored
+// element can never satisfy it. Use a lenient, stable trigger so it reliably wipes in.
+const WORDMARK_REVEAL: IntersectionObserverInit = { threshold: 0, rootMargin: '0px 0px 15% 0px' }
+
 export default function Footer() {
   const paint = usePaintTime()
+  const { ref: wordmarkRef, revealed } = useReveal<HTMLSpanElement>(WORDMARK_REVEAL)
   const year = new Date().getFullYear()
   const { lang, lp } = useLang()
   const t = loc(ui, lang)
@@ -25,7 +32,8 @@ export default function Footer() {
         <div className="footer__brand footer__cell">
           <p className="footer__tagline t-muted">{t.tagline}</p>
           <a className="footer__cta" href={`mailto:${site.email}`}>
-            <span className="footer__cta-text">{t.footer.cta}</span> &rarr;
+            <span className="footer__cta-text">{t.footer.cta}</span>{' '}
+            <span className="footer__cta-arrow" aria-hidden="true">&rarr;</span>
           </a>
           <span className="footer__reply t-label">{t.footer.reply}</span>
         </div>
@@ -56,7 +64,13 @@ export default function Footer() {
       </div>
 
       <div className="footer__wordmark">
-        <span className="footer__wordmark-text" aria-hidden="true">{site.brand}</span>
+        <span
+          ref={wordmarkRef}
+          className={`footer__wordmark-text ${revealed ? 'is-revealed' : ''}`}
+          aria-hidden="true"
+        >
+          {site.brand}
+        </span>
       </div>
 
       <div className="container footer__base">
@@ -83,7 +97,8 @@ export default function Footer() {
           )}
         </span>
         <button className="t-label footer__top" onClick={() => scrollToTop()}>
-          {t.footer.top} ↑
+          {t.footer.top}{' '}
+          <span className="footer__top-arrow" aria-hidden="true">↑</span>
         </button>
       </div>
     </footer>

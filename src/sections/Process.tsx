@@ -34,6 +34,58 @@ export default function Process() {
     return () => io.disconnect()
   }, [])
 
+  // Wayfinding fill: a solid line tracks the reader 1:1 down the node column
+  // (layered over the once-drawn rails). Like ScrollProgress this is a position
+  // indicator, so it deliberately stays live under reduced-motion.
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    let rafId = 0
+    let queued = false
+    let visible = false
+
+    const compute = () => {
+      queued = false
+      // read everything first, then write once (no read/write interleave)
+      const scroll =
+        typeof window.__lenis?.scroll === 'number' ? window.__lenis.scroll : window.scrollY
+      const rect = el.getBoundingClientRect()
+      const listTop = rect.top + scroll
+      const listHeight = rect.height
+      const viewportCenter = scroll + window.innerHeight / 2
+      const raw = listHeight > 0 ? (viewportCenter - listTop) / listHeight : 0
+      const p = Math.min(1, Math.max(0, raw))
+      el.style.setProperty('--proc-progress', String(p))
+    }
+
+    const onScroll = () => {
+      if (!visible || queued) return
+      queued = true
+      rafId = requestAnimationFrame(compute)
+    }
+
+    // pause the rAF loop while the list is offscreen
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) compute()
+      },
+      { threshold: 0 },
+    )
+    io.observe(el)
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+
+    return () => {
+      cancelAnimationFrame(rafId)
+      io.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
   return (
     <Section id="process" dark>
       <SectionHead

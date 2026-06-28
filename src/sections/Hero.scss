@@ -84,7 +84,18 @@
 
 .hero__line--muted {
   color: var(--c-mute-text);
-  transition-delay: 410ms; /* trail line A on the load-rise */
+  /* keep the per-line load rise (clip-path/transform trail 410ms) but also let
+     the color resolve to --fg on primary-CTA intent — no delay, color only */
+  transition:
+    clip-path var(--dur-slow) var(--ease-out) 410ms,
+    transform var(--dur-slow) var(--ease-out) 410ms,
+    color var(--dur) var(--ease-out);
+}
+
+/* the muted second line resolves to full --fg while the primary CTA is engaged */
+.hero__content:has(.hero__cta--primary:hover, .hero__cta--primary:focus-visible)
+  .hero__line--muted {
+  color: var(--fg);
 }
 
 /* ── Entrance choreography (load): header → title → sub → actions → visual.
@@ -140,17 +151,37 @@
   gap: var(--space-6);
 }
 
-/* primary CTA reads as a clear, dominant action */
+/* primary CTA reads as a clear, dominant action — a fill wipes in behind the
+   label (mirrors the Nav contact CTA); label/arrows crossfade to --bg above it */
 .hero__cta--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: var(--space-3) var(--space-5);
   border: 1px solid var(--fg);
-  transition:
-    background-color var(--dur) var(--ease-out),
-    color var(--dur) var(--ease-out);
+  transition: color var(--dur) var(--ease-out);
 }
 
-.hero__cta--primary:hover {
+/* the fill — scales in from the cursor edge (--fill-x, default left for
+   keyboard) and sits behind the label/arrows + the 1px border via z-index */
+.hero__cta--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: var(--fg);
+  transform: scaleX(0);
+  transform-origin: var(--fill-x, left) center;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.hero__cta--primary:hover::before,
+.hero__cta--primary:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.hero__cta--primary:hover,
+.hero__cta--primary:focus-visible {
   color: var(--bg);
 }
 
@@ -170,6 +201,10 @@
   aspect-ratio: 16 / 11;
   border: 1px solid var(--hairline);
   overflow: hidden;
+  /* scroll-exit parallax (±24px, written to --py by useParallax). Uses the
+     independent `translate` so it composes with the entrance `transform` rise
+     instead of clobbering it. */
+  translate: 0 var(--py, 0);
 }
 
 .hero__visual-cap {
@@ -242,6 +277,20 @@
     transition: none;
   }
 
+  /* keep the muted line's color swap on CTA intent, drop its motion */
+  .hero__line--muted {
+    transition: none;
+  }
+
+  /* primary CTA: drop the fill wipe, fall back to the instant fill crossfade */
+  .hero__cta--primary::before {
+    display: none;
+  }
+  .hero__cta--primary:hover,
+  .hero__cta--primary:focus-visible {
+    background: var(--fg);
+  }
+
   /* entrance: everything is present immediately, no cascade */
   .hero__top,
   .hero__sub,
@@ -250,5 +299,10 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* parallax owns the visual's `translate` — null it so it can't drift */
+  .hero__visual {
+    translate: none;
   }
 }

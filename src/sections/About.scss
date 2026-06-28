@@ -16,6 +16,11 @@
   color: var(--c-mute);
 }
 
+/* count-up numeral: tabular figures so its box never jiggles 1 <-> 2 digits */
+.about__count-num {
+  font-variant-numeric: tabular-nums;
+}
+
 .about__lead {
   font-family: var(--font-display);
   font-weight: var(--wght-display);

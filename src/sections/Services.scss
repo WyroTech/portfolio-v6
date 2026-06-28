@@ -33,6 +33,13 @@
   transform: scaleX(1);
 }
 
+/* brighten the whole row, not just the number: re-scope the muted token so the
+   clause lifts to --fg-soft while the number's own :hover at --fg stays dominant */
+.service:hover,
+.service:focus-within {
+  --c-mute: var(--fg-soft);
+}
+
 .service__head {
   display: flex;
   align-items: baseline;
@@ -59,6 +66,18 @@
   transform: translateX(0.25em);
 }
 
+/* scroll-spy: the row centered in the viewport adopts the hover visuals as the
+   index is read down — wayfinding, so it reuses the same token re-scope + number
+   nudge (stays live under reduced-motion; only the transition is dropped there) */
+.service.is-active {
+  --c-mute: var(--fg-soft);
+}
+
+.service.is-active .service__no {
+  color: var(--fg);
+  transform: translateX(0.25em);
+}
+
 .service__title {
   font-family: var(--font-display);
   font-weight: var(--wght-display);
@@ -73,6 +92,7 @@
   font-size: var(--fs-small);
   line-height: var(--lh-body);
   color: var(--c-mute);
+  transition: color var(--dur) var(--ease-out);
 }
 
 .service__list {
@@ -151,16 +171,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* keep the cheap color change; drop the sweep + number translate */
+  /* drop the sweep + the hover number translate; the scroll-spy active state
+     (token re-scope + number nudge + brighter blurb) stays — it's wayfinding —
+     but every transition snaps, so the index never animates */
   .service::after {
     transition: none;
     transform: scaleX(0);
   }
   .service__no {
-    transition: color var(--dur) var(--ease-out);
+    transition: none;
   }
   .service:hover .service__no,
   .service:focus-within .service__no {
     transform: none;
+  }
+  .service__blurb {
+    transition: none;
   }
 }

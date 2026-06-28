@@ -3,6 +3,7 @@ import Section from '../components/ui/Section'
 import Reveal from '../components/ui/Reveal'
 import ArrowLink from '../components/ui/ArrowLink'
 import { scrollToHash } from '../lib/scrollToHash'
+import { useCountUp } from '../hooks/useCountUp'
 import { site } from '../data/site'
 import { highlights, languages } from '../data/highlights'
 import { useLang } from '../i18n/lang'
@@ -23,6 +24,12 @@ export default function About() {
   const t = loc(ui, lang)
   const langs = loc(languages, lang)
   const hls = loc(highlights, lang)
+
+  // Experience figure: animate only the numeral, keep any suffix static so it
+  // never reflows. parseInt is robust ("10+" -> 10); the suffix stays as text.
+  const yearsNum = parseInt(site.years, 10)
+  const yearsSuffix = site.years.replace(/^\d+/, '')
+  const countRef = useCountUp<HTMLSpanElement>(yearsNum)
 
   const portraitRef = useRef<HTMLDivElement>(null)
 
@@ -91,7 +98,11 @@ export default function About() {
           <Reveal className="about__meta" as="div">
             <h2 className="t-label">{t.about.label}</h2>
             <span className="t-label about__count">
-              {t.about.years} ({site.years})
+              {t.about.years} (
+              <span ref={countRef} className="about__count-num">
+                {yearsNum}
+              </span>
+              {yearsSuffix})
             </span>
           </Reveal>
 
