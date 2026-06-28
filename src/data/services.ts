@@ -37,6 +37,16 @@ const en: Service[] = [
     title: 'Prototype or MVP',
     blurb: 'A working first version to test and pitch.',
   },
+  {
+    no: '07',
+    title: 'AI features',
+    blurb: 'Assistants and automation that reach production.',
+  },
+  {
+    no: '08',
+    title: 'Generative UI',
+    blurb: 'Interfaces an AI assembles at runtime, around your data.',
+  },
 ]
 
 const de: Service[] = [
@@ -69,6 +79,16 @@ const de: Service[] = [
     no: '06',
     title: 'Prototyp oder MVP',
     blurb: 'Lauffähige erste Version zum Testen und Pitchen.',
+  },
+  {
+    no: '07',
+    title: 'KI-Funktionen',
+    blurb: 'Assistenten und Automatisierung, die in Produktion gehen.',
+  },
+  {
+    no: '08',
+    title: 'Generative UI',
+    blurb: 'Interfaces, die eine KI zur Laufzeit aus Ihren Daten baut.',
   },
 ]
 
