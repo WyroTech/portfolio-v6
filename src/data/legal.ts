@@ -31,7 +31,7 @@ export const impressum: LegalDoc = {
     },
     {
       heading: 'Kontakt',
-      body: ['E-Mail: a@wyro.tech'],
+      body: ['Telefon: +49 152 29143254', 'E-Mail: a@wyro.tech'],
     },
     {
       heading: 'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV',
@@ -71,7 +71,7 @@ export const datenschutz: LegalDoc = {
       heading: 'Verantwortlicher',
       body: [
         'Verantwortlich für die Datenverarbeitung auf dieser Website ist:',
-        'Andreas Wyrobek, Pferdemarkt 18, 94469 Deggendorf, Deutschland. E-Mail: a@wyro.tech',
+        'Andreas Wyrobek, Pferdemarkt 18, 94469 Deggendorf, Deutschland. Telefon: +49 152 29143254, E-Mail: a@wyro.tech',
       ],
     },
     {

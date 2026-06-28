@@ -187,7 +187,7 @@ const de: Ui = {
     cta: 'Projekt starten',
     reply: 'Antwort innerhalb von 1 Werktag',
     index: 'Index',
-    elsewhere: 'Anderswo',
+    elsewhere: 'Profile',
     paint: 'First Paint',
     top: 'Nach oben',
     homeAria: 'WyroTech – Startseite',
