@@ -8,3 +8,15 @@ export function scrollToHash(hash: string) {
   else (el as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' })
   window.history.replaceState(null, '', hash)
 }
+
+/**
+ * Smooth-scroll to the very top of the page, routed through Lenis when active.
+ * Independent of any in-page anchor, so it works on every route (the `#top`
+ * element only exists on the home page's Hero).
+ */
+export function scrollToTop() {
+  const lenis = window.__lenis
+  if (lenis) lenis.scrollTo(0)
+  else window.scrollTo({ top: 0, behavior: 'smooth' })
+  window.history.replaceState(null, '', window.location.pathname + window.location.search)
+}

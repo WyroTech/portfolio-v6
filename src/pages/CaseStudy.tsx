@@ -46,9 +46,20 @@ export default function CaseStudy() {
         </header>
 
         <div className="case__media container">
-          <div className="case__media-visual">
-            <Visual seed={work.slug} kind={work.visual} />
-          </div>
+          {work.shot ? (
+            <img
+              className="case__media-shot"
+              src={work.shot}
+              alt={`${work.title} — ${lang === 'de' ? 'Screenshot der Website' : 'website screenshot'}`}
+              width={1600}
+              height={1000}
+              decoding="async"
+            />
+          ) : (
+            <div className="case__media-visual">
+              <Visual seed={work.slug} kind={work.visual} />
+            </div>
+          )}
         </div>
 
         <Reveal as="div" className="case__meta container">
@@ -114,7 +125,7 @@ export default function CaseStudy() {
               >
                 {work.link.label}
                 <span className="case__link-arrow" aria-hidden="true">
-                  &nearr;
+                  ↗
                 </span>
               </a>
             </Reveal>

@@ -4,7 +4,7 @@ import { useLang } from '../i18n/lang'
 import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
 import { usePaintTime } from '../hooks/usePaintTime'
-import { scrollToHash } from '../lib/scrollToHash'
+import { scrollToTop } from '../lib/scrollToHash'
 import './Footer.scss'
 
 export default function Footer() {
@@ -81,7 +81,7 @@ export default function Footer() {
             </>
           )}
         </span>
-        <button className="t-label footer__top" onClick={() => scrollToHash('#top')}>
+        <button className="t-label footer__top" onClick={() => scrollToTop()}>
           {t.footer.top} ↑
         </button>
       </div>

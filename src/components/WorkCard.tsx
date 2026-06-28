@@ -24,7 +24,19 @@ export default function WorkCard({ work, index }: WorkCardProps) {
   return (
     <Link to={lp(`/work/${work.slug}`)} viewTransition className="work-card">
       <div className="work-card__thumb">
-        <Visual seed={work.slug} kind={work.visual} className="work-card__visual" />
+        {work.shot ? (
+          <img
+            className="work-card__visual work-card__shot"
+            src={work.shot}
+            alt={`${work.title} — ${lang === 'de' ? 'Screenshot der Website' : 'website screenshot'}`}
+            width={1600}
+            height={1000}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <Visual seed={work.slug} kind={work.visual} className="work-card__visual" />
+        )}
       </div>
 
       <div className="work-card__top">

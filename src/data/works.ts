@@ -23,6 +23,10 @@ export interface Work {
   results: string[]
   /** Optional external/live link */
   link?: { label: string; href: string }
+  /** Optional real screenshot (public path). When set, it replaces the
+   *  generative line-art on the work card and case-study hero. Only used for
+   *  public, non-NDA projects. */
+  shot?: string
 }
 
 /**
@@ -90,28 +94,28 @@ const en: Work[] = [
   },
   {
     slug: 'enterprise-saas-product',
-    title: 'Enterprise SaaS Product',
+    title: 'SAP Data & BI Platform',
     client: 'German software company',
     year: '2019 — 2024',
     role: 'Frontend Engineer',
-    category: 'Product · Web App',
-    stack: ['Angular', '.NET Core', 'TypeScript', 'Azure DevOps'],
+    category: 'Analytics Platform · Web App',
+    stack: ['SAP', 'Microsoft Fabric', 'Power BI', 'Angular', '.NET', 'TypeScript'],
     visual: 'waves',
-    metric: { value: 'Angular · .NET', label: 'years in production, still shipping' },
+    metric: { value: 'SAP→BI', label: 'raw data to dashboards' },
     summary:
-      'A flagship enterprise product built from the base up in Angular and .NET Core, with CI/CD pipelines and a growing design system.',
-    outcome: 'A flagship product still shipping years later — built to stay maintainable, not just to launch.',
+      'An enterprise platform that extracts data from SAP, models it in Microsoft Fabric, and surfaces it through Power BI and a custom Angular interface.',
+    outcome: 'Turned locked-away SAP data into Power BI dashboards the business can actually use — through a clean, maintainable frontend.',
     problem:
-      'A new flagship product needed a solid base, a maintainable frontend and a delivery pipeline the team could rely on.',
+      'SAP data was locked in the system and hard to work with. It needed to be extracted, analyzed in Microsoft Fabric, and delivered to the right people as clear Power BI views.',
     approach: [
-      'Built the base product with Angular and .NET Core.',
-      'Contributed feature releases over multiple years.',
-      'Integrated CI/CD pipelines with Azure DevOps.',
-      'Helped shape the product’s design system.',
+      'Built the Angular and .NET frontend for the SAP data-analytics platform.',
+      'Surfaced data extracted from SAP and modeled in Microsoft Fabric.',
+      'Integrated Power BI reporting into the product interface.',
+      'Shipped features across the platform over several years.',
     ],
     results: [
-      'A long-lived flagship product with a sustainable frontend codebase.',
-      'Reliable, automated delivery.',
+      'SAP data made visible and usable through Power BI and a custom interface.',
+      'A long-lived platform I kept shipping features on for years.',
     ],
   },
   {
@@ -166,6 +170,7 @@ const en: Work[] = [
     category: 'Website · Healthcare',
     stack: ['React'],
     visual: 'ripple',
+    shot: '/work/mitrisa-velo.webp',
     metric: { value: 'Family', label: 'a build for family & friends' },
     summary:
       'A clean single-page website for a speech-language therapist — designed and built end to end in React, as a project for family & friends.',
@@ -240,28 +245,28 @@ const de: Work[] = [
   },
   {
     slug: 'enterprise-saas-product',
-    title: 'Enterprise-SaaS-Produkt',
+    title: 'SAP-Daten- & BI-Plattform',
     client: 'Deutsches Softwareunternehmen',
     year: '2019 — 2024',
     role: 'Frontend-Engineer',
-    category: 'Produkt · Web-App',
-    stack: ['Angular', '.NET Core', 'TypeScript', 'Azure DevOps'],
+    category: 'Analytics-Plattform · Web-App',
+    stack: ['SAP', 'Microsoft Fabric', 'Power BI', 'Angular', '.NET', 'TypeScript'],
     visual: 'waves',
-    metric: { value: 'Angular · .NET', label: 'Jahre produktiv, weiter ausgeliefert' },
+    metric: { value: 'SAP→BI', label: 'Rohdaten zu Dashboards' },
     summary:
-      'Ein zentrales Enterprise-Produkt, von Grund auf in Angular und .NET Core gebaut – mit CI/CD-Pipelines und einem wachsenden Designsystem.',
-    outcome: 'Ein zentrales Produkt, das Jahre später noch ausgeliefert wird – gebaut, um wartbar zu bleiben, nicht nur zu starten.',
+      'Eine Enterprise-Plattform, die Daten aus SAP extrahiert, sie in Microsoft Fabric modelliert und über Power BI und eine eigene Angular-Oberfläche bereitstellt.',
+    outcome: 'Aus eingeschlossenen SAP-Daten wurden Power-BI-Dashboards, mit denen die Fachbereiche wirklich arbeiten können – über ein klares, wartbares Frontend.',
     problem:
-      'Ein neues zentrales Produkt brauchte ein solides Fundament, ein wartbares Frontend und eine Auslieferungspipeline, auf die sich das Team verlassen kann.',
+      'Die SAP-Daten steckten im System fest und waren schwer nutzbar. Sie mussten extrahiert, in Microsoft Fabric ausgewertet und den richtigen Leuten als klare Power-BI-Sichten bereitgestellt werden.',
     approach: [
-      'Das Basisprodukt mit Angular und .NET Core gebaut.',
-      'Über mehrere Jahre an Feature-Releases mitgewirkt.',
-      'CI/CD-Pipelines mit Azure DevOps integriert.',
-      'Das Designsystem des Produkts mitgeprägt.',
+      'Das Angular- und .NET-Frontend für die SAP-Datenplattform gebaut.',
+      'Aus SAP extrahierte und in Microsoft Fabric modellierte Daten zugänglich gemacht.',
+      'Power-BI-Reporting in die Produktoberfläche integriert.',
+      'Über mehrere Jahre Features auf der Plattform ausgeliefert.',
     ],
     results: [
-      'Ein langlebiges zentrales Produkt mit einer tragfähigen Frontend-Codebasis.',
-      'Zuverlässige, automatisierte Auslieferung.',
+      'SAP-Daten über Power BI und eine eigene Oberfläche sichtbar und nutzbar gemacht.',
+      'Eine langlebige Plattform, auf der ich über Jahre Features ausgeliefert habe.',
     ],
   },
   {
@@ -316,6 +321,7 @@ const de: Work[] = [
     category: 'Website · Gesundheit',
     stack: ['React'],
     visual: 'ripple',
+    shot: '/work/mitrisa-velo.webp',
     metric: { value: 'Familie', label: 'ein Projekt für Familie & Freunde' },
     summary:
       'Eine klare One-Page-Website für eine Logopädin – durchgängig in React gestaltet und gebaut, als Projekt für Familie & Freunde.',

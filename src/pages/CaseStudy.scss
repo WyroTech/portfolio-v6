@@ -45,6 +45,14 @@
   border-block: 1px solid var(--hairline);
 }
 
+/* real screenshot — shown at its natural ratio, not the 21/9 art banner */
+.case__media-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-block: 1px solid var(--hairline);
+}
+
 /* ---- Meta ---- */
 .case__meta {
   display: flex;
