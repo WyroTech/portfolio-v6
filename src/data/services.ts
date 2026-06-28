@@ -10,32 +10,32 @@ const en: Service[] = [
   {
     no: '01',
     title: 'Web app or platform',
-    blurb: 'A custom web application built around your processes, your data and your users — including AI features when you need them.',
+    blurb: 'Built around your processes and data.',
   },
   {
     no: '02',
     title: 'Dashboards & data tools',
-    blurb: 'Dense data made clear and usable — analytics, admin panels and internal tools your team actually wants to use.',
+    blurb: 'Dense data, made clear and usable.',
   },
   {
     no: '03',
     title: 'SaaS product',
-    blurb: 'From first concept to a scalable, production SaaS — product thinking, UX and engineering from one person.',
+    blurb: 'From concept to scalable product.',
   },
   {
     no: '04',
     title: 'Design system',
-    blurb: 'A component library and design system so every team ships consistent, on-brand UI — without the drift.',
+    blurb: 'Consistent, on-brand UI for every team.',
   },
   {
     no: '05',
     title: 'Frontend modernization',
-    blurb: 'A legacy or tired frontend rebuilt in Angular or React — faster, accessible and easy to maintain.',
+    blurb: 'Legacy UI rebuilt in React or Angular.',
   },
   {
     no: '06',
     title: 'Prototype or MVP',
-    blurb: 'A working first version of your idea — enough to test with users, demo to stakeholders and raise.',
+    blurb: 'A working first version to test and pitch.',
   },
 ]
 
@@ -43,32 +43,32 @@ const de: Service[] = [
   {
     no: '01',
     title: 'Web-App oder Plattform',
-    blurb: 'Eine maßgeschneiderte Web-Anwendung rund um Ihre Prozesse, Ihre Daten und Ihre Nutzer – auf Wunsch mit KI-Funktionen.',
+    blurb: 'Maßgeschneidert für Ihre Prozesse und Daten.',
   },
   {
     no: '02',
     title: 'Dashboards & Datentools',
-    blurb: 'Dichte Daten klar und nutzbar gemacht – Analysen, Admin-Bereiche und interne Tools, die Ihr Team gern verwendet.',
+    blurb: 'Dichte Daten – klar und nutzbar.',
   },
   {
     no: '03',
     title: 'SaaS-Produkt',
-    blurb: 'Vom ersten Konzept zu einem skalierbaren, produktiven SaaS – Produktdenken, UX und Entwicklung aus einer Hand.',
+    blurb: 'Vom Konzept zum skalierbaren Produkt.',
   },
   {
     no: '04',
     title: 'Designsystem',
-    blurb: 'Eine Komponentenbibliothek und ein Designsystem, damit jedes Team konsistente, markentreue UI ausliefert – ohne Abweichung.',
+    blurb: 'Konsistente, markentreue UI in jedem Team.',
   },
   {
     no: '05',
     title: 'Frontend-Modernisierung',
-    blurb: 'Ein veraltetes Frontend, neu gebaut in Angular oder React – schneller, barrierefrei und wartbar.',
+    blurb: 'Altes Frontend, neu in React oder Angular.',
   },
   {
     no: '06',
     title: 'Prototyp oder MVP',
-    blurb: 'Eine funktionierende erste Version Ihrer Idee – genug zum Testen mit Nutzern, Vorführen und Pitchen.',
+    blurb: 'Lauffähige erste Version zum Testen und Pitchen.',
   },
 ]
 

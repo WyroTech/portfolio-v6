@@ -1,15 +1,15 @@
+/* Editorial index: services read top-to-bottom as numbered rows
+   ([nn] · title · one-line clause), not a 3×2 wall of paragraph cards. */
 .services {
-  display: grid;
-  grid-template-columns: 1fr;
-  column-gap: var(--grid-gap);
+  display: block;
 }
 
 .service {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  padding-block: clamp(2rem, 4vw, 3rem);
+  gap: var(--space-2);
+  padding-block: clamp(1.5rem, 4vw, 2rem);
   border-top: 1px solid var(--hairline);
 }
 
@@ -35,19 +35,22 @@
 
 .service__head {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   gap: var(--space-4);
 }
 
 .service__no {
   flex: none;
   color: var(--c-mute);
-  /* give the index a line-box as tall as the title's first line so it sits
-     truly centered against that line — no magic margin, no drift */
-  line-height: calc(var(--fs-h3) * 1.12);
   transition:
     color var(--dur) var(--ease-out),
     transform var(--dur) var(--ease-out);
+}
+
+/* a touch larger than a plain t-label for index presence — still mono/label.
+   compound selector beats .t-label's font-size regardless of source order */
+.t-label.service__no {
+  font-size: var(--fs-small);
 }
 
 .service:hover .service__no,
@@ -62,17 +65,14 @@
   font-size: var(--fs-h3);
   line-height: 1.12;
   letter-spacing: var(--ls-heading);
-  /* reserve two lines so every body paragraph starts on the same baseline */
-  min-height: 2.24em;
 }
 
+/* the clause: a muted caption, not body prose — title leads the row */
 .service__blurb {
-  /* readability: a tighter measure, explicit comfortable size + leading, and a
-     brighter tone than --fg-soft (which read too dim on the dark surface) */
-  max-width: 42ch;
-  font-size: var(--fs-body);
+  max-width: 44ch;
+  font-size: var(--fs-small);
   line-height: var(--lh-body);
-  color: color-mix(in srgb, var(--fg) 82%, var(--bg));
+  color: var(--c-mute);
 }
 
 .service__list {
@@ -89,20 +89,65 @@
 .services__cta {
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
   padding-top: clamp(1.5rem, 3vw, 2.5rem);
-  padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
+  padding-bottom: 0;
   border-top: 1px solid var(--hairline);
 }
 
+/* tablet: number | (title over clause) */
 @media (min-width: 768px) {
-  .services {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .service {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: baseline;
+    padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  /* let the head's children join the row grid directly */
+  .service__head {
+    display: contents;
+  }
+  .service__no {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .service__title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .service__blurb {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: var(--space-2);
+    max-width: 48ch;
   }
 }
 
+/* desktop: the true index row — number | title | clause anchored right */
 @media (min-width: 1024px) {
-  .services {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .service {
+    grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 40ch);
+    column-gap: clamp(2rem, 4vw, 4rem);
   }
+  .service__blurb {
+    grid-column: 3;
+    grid-row: 1;
+    margin-top: 0;
+    max-width: none;
+    align-self: baseline;
+  }
+}
+
+/* finding #1 — fill the header's right column (intro) + halve the gap so the
+   two-line H2 reads as a balanced header, not a stranded title over a void */
+#services .section-head {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* finding #3 — six tall rows fill the section height; trim the dark section's
+   bottom band so the black void below the CTA collapses (next section is light
+   and carries its own top padding) */
+#services {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
 }
 
 @media (prefers-reduced-motion: reduce) {

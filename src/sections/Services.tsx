@@ -17,10 +17,15 @@ export default function Services() {
 
   return (
     <Section id="services" dark>
-      <SectionHead eyebrow={t.services.eyebrow} count={count} title={t.services.title} />
+      <SectionHead
+        eyebrow={t.services.eyebrow}
+        count={count}
+        title={t.services.title}
+        intro={t.services.intro}
+      />
       <div className="services">
         {items.map((service, i) => (
-          <Reveal as="article" key={service.no} className="service" delay={(i % 3) * 60}>
+          <Reveal as="article" key={service.no} className="service" delay={i * 45}>
             <div className="service__head">
               <span className="t-label service__no">[{service.no}]</span>
               <h3 className="service__title">{service.title}</h3>

@@ -38,6 +38,7 @@ const en = {
   services: {
     eyebrow: 'Services',
     title: 'What I build with you.',
+    intro: 'Six ways I can help — start with the closest.',
   },
 
   capabilities: { label: 'Stack' },
@@ -91,6 +92,7 @@ const en = {
     problem: 'The problem',
     approach: 'Approach',
     outcome: 'Outcome',
+    results: 'Results',
     next: 'Next project',
     view: 'View case study',
   },
@@ -147,6 +149,7 @@ const de: Ui = {
   services: {
     eyebrow: 'Leistungen',
     title: 'Was ich mit Ihnen baue.',
+    intro: 'Sechs Wege, wie ich helfe – wählen Sie den passenden.',
   },
 
   capabilities: { label: 'Stack' },
@@ -200,6 +203,7 @@ const de: Ui = {
     problem: 'Die Aufgabe',
     approach: 'Vorgehen',
     outcome: 'Ergebnis',
+    results: 'Ergebnisse',
     next: 'Nächstes Projekt',
     view: 'Case Study ansehen',
   },
