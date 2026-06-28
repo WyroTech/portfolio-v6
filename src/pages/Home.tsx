@@ -95,6 +95,7 @@ export default function Home() {
         email: `mailto:${site.email}`,
         telephone: site.phone,
         priceRange: '€€',
+        logo: `${SITE_URL}/logo.svg`,
         founder: { '@id': personId },
         provider: { '@id': personId },
         address: {
