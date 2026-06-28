@@ -8,7 +8,6 @@ import {
   siJavascript,
   siStorybook,
   siFigma,
-  siDotnet,
   siPython,
   siPostgresql,
   siDocker,
@@ -56,7 +55,6 @@ const ICONS: Record<string, SimpleIcon> = {
   JavaScript: siJavascript,
   Storybook: siStorybook,
   Figma: siFigma,
-  '.NET': siDotnet,
   Python: siPython,
   PostgreSQL: siPostgresql,
   Docker: siDocker,
@@ -90,8 +88,10 @@ const ICONS: Record<string, SimpleIcon> = {
   // Azure, Azure DevOps.
 }
 
-// Logos that are wordmarks (already spell the name) → show glyph only, no label.
-const WORDMARKS = new Set(['.NET'])
+// Wordmark logos (glyph already spells the name) → glyph only, no label.
+// None currently: .NET's Simple Icons mark is a thin wordmark, so it renders as a
+// monogram chip instead (a deliberate choice — see the fallback below).
+const WORDMARKS = new Set<string>()
 
 export default function TechIcon({ name }: { name: string }) {
   const icon = ICONS[name]
@@ -99,7 +99,8 @@ export default function TechIcon({ name }: { name: string }) {
   if (!icon) {
     // No trademark-safe mark — render a monogram chip in the glyph slot so the
     // item still baseline-aligns with the real glyphs (no bare, crooked text).
-    const mono = name.replace(/[^A-Za-z0-9#+.]/g, '').slice(0, 2)
+    // .NET: its Simple Icons mark is a thin wordmark, so show a clean "NET" chip.
+    const mono = name === '.NET' ? 'NET' : name.replace(/[^A-Za-z0-9#+.]/g, '').slice(0, 2)
     return (
       <span className="tech tech--text">
         <span className="tech__glyph tech__glyph--mono" aria-hidden="true">
