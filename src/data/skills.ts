@@ -15,10 +15,12 @@ export const techCategories: TechCategory[] = [
       'TypeScript',
       'JavaScript',
       'HTML5',
+      'CSS',
       'React',
       'Next.js',
       'Astro',
       'Tailwind',
+      'daisyUI',
       'Sass',
       'Figma',
       'Storybook',
@@ -27,7 +29,7 @@ export const techCategories: TechCategory[] = [
   {
     en: 'AI',
     de: 'KI',
-    items: ['OpenAI', 'Claude'],
+    items: ['OpenAI', 'Claude', 'MCP'],
   },
   {
     en: 'Backend & Databases',
@@ -48,7 +50,7 @@ export const techCategories: TechCategory[] = [
   {
     en: 'APIs & Realtime',
     de: 'APIs & Realtime',
-    items: ['REST', 'GraphQL', 'gRPC', 'WebSocket', 'Webhooks', 'SignalR'],
+    items: ['REST', 'GraphQL', 'tRPC', 'gRPC', 'WebSocket', 'Webhooks', 'SignalR'],
   },
   {
     en: 'Cloud & DevOps',
@@ -58,6 +60,6 @@ export const techCategories: TechCategory[] = [
   {
     en: 'Tooling',
     de: 'Tooling',
-    items: ['Git', 'GitHub', 'Azure DevOps', 'JetBrains', 'Vitest', 'Playwright', 'ClickUp', 'Odoo'],
+    items: ['Git', 'GitHub', 'Vercel', 'Cloudflare', 'Azure DevOps', 'JetBrains', 'Vitest', 'Playwright', 'ClickUp', 'Odoo'],
   },
 ]

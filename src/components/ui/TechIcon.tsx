@@ -5,7 +5,6 @@ import {
   siReactivex,
   siSass,
   siHtml5,
-  siCss,
   siJavascript,
   siStorybook,
   siFigma,
@@ -33,6 +32,11 @@ import {
   siGraphql,
   siGithub,
   siNestjs,
+  siDaisyui,
+  siTrpc,
+  siVercel,
+  siCloudflare,
+  siModelcontextprotocol,
 } from 'simple-icons'
 import './TechIcon.scss'
 
@@ -49,7 +53,6 @@ const ICONS: Record<string, SimpleIcon> = {
   RxJS: siReactivex,
   Sass: siSass,
   HTML5: siHtml5,
-  CSS: siCss,
   JavaScript: siJavascript,
   Storybook: siStorybook,
   Figma: siFigma,
@@ -77,6 +80,11 @@ const ICONS: Record<string, SimpleIcon> = {
   GraphQL: siGraphql,
   GitHub: siGithub,
   NestJS: siNestjs,
+  daisyUI: siDaisyui,
+  tRPC: siTrpc,
+  Vercel: siVercel,
+  Cloudflare: siCloudflare,
+  MCP: siModelcontextprotocol,
   // No trademark-safe / consistent Simple Icons glyph (→ monogram fallback): OpenAI,
   // SQL Server, Playwright, Vitest, REST, gRPC, WebSocket, Webhooks, SignalR, AWS,
   // Azure, Azure DevOps.
