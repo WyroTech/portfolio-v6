@@ -64,6 +64,20 @@
   color: var(--fg-soft);
 }
 
+.contact__phone {
+  width: fit-content;
+  margin-top: var(--space-3);
+  padding-block: 4px;
+  color: var(--fg-soft);
+  font-size: var(--fs-small);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.contact__phone:hover,
+.contact__phone:focus-visible {
+  color: var(--fg);
+}
+
 .contact__email {
   position: relative;
   width: fit-content;

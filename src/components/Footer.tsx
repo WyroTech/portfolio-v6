@@ -51,6 +51,7 @@ export default function Footer() {
               {s.label}
             </a>
           ))}
+          <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
         </div>
       </div>
 

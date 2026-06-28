@@ -62,6 +62,7 @@ export default function Home() {
         url: SITE_URL,
         image: OG_IMAGE,
         email: `mailto:${site.email}`,
+        telephone: site.phone,
         jobTitle: t.role,
         address: {
           '@type': 'PostalAddress',
@@ -92,6 +93,8 @@ export default function Home() {
         url: homeUrl,
         image: OG_IMAGE,
         email: `mailto:${site.email}`,
+        telephone: site.phone,
+        priceRange: '€€',
         founder: { '@id': personId },
         provider: { '@id': personId },
         address: {

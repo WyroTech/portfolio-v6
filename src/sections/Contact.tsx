@@ -36,6 +36,15 @@ export default function Contact() {
             <span className="contact__email-text">{site.email}</span>
           </Reveal>
 
+          <Reveal
+            as="a"
+            className="contact__phone t-mono"
+            delay={140}
+            href={`tel:${site.phone.replace(/\s/g, '')}`}
+          >
+            {site.phone}
+          </Reveal>
+
           <Reveal className="contact__row" as="div" delay={160}>
             <HoldButton
               ariaLabel={t.contact.holdAria}

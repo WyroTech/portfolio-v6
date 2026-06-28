@@ -6,6 +6,8 @@ export const site = {
   brand: 'WyroTech',
   person: 'Andreas Wyrobek',
   email: 'a@wyro.tech',
+  /** public phone, international display format; tel: href strips the spaces */
+  phone: '+49 152 29143254',
   /** language-neutral city used in structured data */
   city: 'Deggendorf',
   timezone: 'Europe/Berlin',
