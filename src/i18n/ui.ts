@@ -219,7 +219,7 @@ const de: Ui = {
   meta: {
     homeTitle: 'Webentwickler Deggendorf · B2B Web-Apps & SaaS | WyroTech',
     homeDescription:
-      'Andreas Wyrobek – Webentwickler in Deggendorf. Ich designe & entwickle B2B-Web-Apps, Dashboards, SaaS & Design-Systeme in Angular, React, .NET & Azure. DE/EN.',
+      'Andreas Wyrobek – Webentwickler in Deggendorf. Ich designe & entwickle B2B-Web-Apps, Dashboards & SaaS in Angular, React, .NET & Azure. DE/EN.',
     notFoundTitle: 'Nicht gefunden — WyroTech',
     notFoundDescription: 'Diese Seite konnte nicht gefunden werden.',
   },

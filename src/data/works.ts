@@ -14,6 +14,8 @@ export interface Work {
   /** generative artwork style for this project */
   visual: VisualKind
   summary: string
+  /** Optional SERP meta description (≤150 chars). Falls back to `summary`. */
+  seoDescription?: string
   /** One-line outcome shown in the grid */
   outcome: string
   problem: string
@@ -49,6 +51,8 @@ const en: Work[] = [
     visual: 'flow',
     summary:
       'A SAP data-analytics product reimagined as a cloud-native SaaS on Azure — from the first Figma mockups to a production Angular interface.',
+    seoDescription:
+      'On-prem SAP analytics reimagined as a cloud-native Azure SaaS — UX designed in Figma, production frontend in Angular. A WyroTech case study.',
     outcome: 'Turned an on-prem analytics tool into a self-serve SaaS — one product non-technical analysts can run without training.',
     problem:
       'An on-prem SAP analytics tool needed to become a scalable, self-serve SaaS product. That meant a new product direction, a coherent interface for dense data work, and a frontend that could grow feature by feature.',
@@ -75,6 +79,8 @@ const en: Work[] = [
     visual: 'contours',
     summary:
       'A customer portal built on a purpose-made design system — defined in Figma and implemented end-to-end in Angular.',
+    seoDescription:
+      'A customer portal built on a purpose-made design system — defined in Figma and shipped end to end in Angular. A WyroTech case study.',
     outcome: 'Ship portal features fast, with zero visual drift — one design system, design to code.',
     problem:
       'The portal needed a consistent, reusable interface language so features could ship quickly without visual drift.',
@@ -99,6 +105,8 @@ const en: Work[] = [
     visual: 'waves',
     summary:
       'An enterprise platform that extracts data from SAP, models it in Microsoft Fabric, and surfaces it through Power BI and a custom Angular interface.',
+    seoDescription:
+      'Enterprise platform that extracts SAP data, models it in Microsoft Fabric and surfaces it via Power BI and a custom Angular frontend.',
     outcome: 'Turned locked-away SAP data into Power BI dashboards the business can actually use — through a clean, maintainable frontend.',
     problem:
       'SAP data was locked in the system and hard to work with. It needed to be extracted, analyzed in Microsoft Fabric, and delivered to the right people as clear Power BI views.',
@@ -124,6 +132,8 @@ const en: Work[] = [
     visual: 'harmonograph',
     summary:
       'A desktop utility that opens SAP data inside the SAP GUI with a single click — removing a tedious, repetitive workflow.',
+    seoDescription:
+      'An Electron desktop tool that opens SAP data inside the SAP GUI in one click — removing a slow, repetitive daily workflow.',
     outcome: 'A daily multi-step SAP chore, gone — one click instead.',
     problem: 'Reaching specific SAP data in the SAP GUI was slow and manual. Users needed a shortcut.',
     approach: [
@@ -143,6 +153,8 @@ const en: Work[] = [
     visual: 'flow',
     summary:
       'A smart robot car controlled in real time over WebSockets — an ESP32 and a Python backend talking JSON to an Arduino, with a live camera stream to the browser.',
+    seoDescription:
+      'A smart robot car controlled in real time over WebSockets — ESP32 + Python backend, Arduino motors and a live camera stream to the browser.',
     outcome: 'Real-time robot control over WebSockets — ESP32 + Python.',
     problem:
       'Build a responsive, low-latency control loop for a physical robot car spanning web, backend and microcontrollers.',
@@ -166,6 +178,8 @@ const en: Work[] = [
     shot: '/work/mitrisa-velo.webp',
     summary:
       'A clean single-page website for a speech-language therapist — designed and built end to end in React, as a project for family & friends.',
+    seoDescription:
+      'A clean one-page website for a speech-language therapist — designed and built end to end in React. A WyroTech case study.',
     outcome: 'A speech therapist’s practice online — a simple site to show her services and get in touch.',
     problem:
       'A speech-language therapist needed a simple, trustworthy web presence: one place to explain her services and let people reach her.',
@@ -194,6 +208,8 @@ const de: Work[] = [
     visual: 'flow',
     summary:
       'Ein SAP-Datenanalyse-Produkt, neu gedacht als cloud-native SaaS-Anwendung auf Azure – von den ersten Figma-Mockups bis zum produktiven Angular-Interface.',
+    seoDescription:
+      'SAP-Datenanalyse, neu gedacht als cloud-native SaaS auf Azure – UX in Figma entworfen, produktives Frontend in Angular. Eine WyroTech-Case-Study.',
     outcome: 'Aus einem On-Prem-Analysewerkzeug ein Self-Service-SaaS gemacht – ein Produkt, das Analysten ohne technischen Hintergrund ohne Schulung bedienen.',
     problem:
       'Ein lokal betriebenes SAP-Analysewerkzeug sollte zu einem skalierbaren Self-Service-SaaS werden. Das bedeutete eine neue Produktrichtung, ein stimmiges Interface für dichte Datenarbeit und ein Frontend, das Feature für Feature wachsen kann.',
@@ -220,6 +236,8 @@ const de: Work[] = [
     visual: 'contours',
     summary:
       'Ein Kundenportal auf einem eigens entwickelten Designsystem – in Figma definiert und durchgängig in Angular umgesetzt.',
+    seoDescription:
+      'Ein Kundenportal auf einem eigens gebauten Designsystem – in Figma definiert und durchgängig in Angular umgesetzt. Eine WyroTech-Case-Study.',
     outcome: 'Portal-Features schnell ausliefern, ohne visuelle Abweichung – ein Designsystem, von Design bis Code.',
     problem:
       'Das Portal brauchte eine konsistente, wiederverwendbare Interface-Sprache, damit Features schnell und ohne visuelle Abweichungen entstehen können.',
@@ -244,6 +262,8 @@ const de: Work[] = [
     visual: 'waves',
     summary:
       'Eine Enterprise-Plattform, die Daten aus SAP extrahiert, sie in Microsoft Fabric modelliert und über Power BI und eine eigene Angular-Oberfläche bereitstellt.',
+    seoDescription:
+      'Enterprise-Plattform, die SAP-Daten extrahiert, in Microsoft Fabric modelliert und über Power BI und eine eigene Angular-Oberfläche bereitstellt.',
     outcome: 'Aus eingeschlossenen SAP-Daten wurden Power-BI-Dashboards, mit denen die Fachbereiche wirklich arbeiten können – über ein klares, wartbares Frontend.',
     problem:
       'Die SAP-Daten steckten im System fest und waren schwer nutzbar. Sie mussten extrahiert, in Microsoft Fabric ausgewertet und den richtigen Leuten als klare Power-BI-Sichten bereitgestellt werden.',
@@ -269,6 +289,8 @@ const de: Work[] = [
     visual: 'harmonograph',
     summary:
       'Ein Desktop-Tool, das SAP-Daten mit einem einzigen Klick im SAP GUI öffnet – und einen mühsamen, sich wiederholenden Ablauf ersetzt.',
+    seoDescription:
+      'Ein Electron-Desktop-Tool, das SAP-Daten mit einem Klick im SAP GUI öffnet – und einen mühsamen, täglichen Ablauf ersetzt.',
     outcome: 'Eine tägliche, mehrstufige SAP-Prozedur – weg, ein Klick stattdessen.',
     problem: 'Bestimmte SAP-Daten im SAP GUI zu erreichen, war langsam und manuell. Es fehlte eine Abkürzung.',
     approach: [
@@ -288,6 +310,8 @@ const de: Work[] = [
     visual: 'flow',
     summary:
       'Ein smartes Roboterauto, in Echtzeit über WebSockets gesteuert – ein ESP32 und ein Python-Backend sprechen JSON mit einem Arduino, mit einem Live-Kamerastream in den Browser.',
+    seoDescription:
+      'Ein smartes Roboterauto, in Echtzeit über WebSockets gesteuert – ESP32 + Python-Backend, Arduino-Motoren und Live-Kamerastream im Browser.',
     outcome: 'Echtzeit-Robotersteuerung über WebSockets – ESP32 + Python.',
     problem:
       'Eine reaktionsschnelle Steuerschleife mit geringer Latenz für ein physisches Roboterauto bauen – über Web, Backend und Mikrocontroller hinweg.',
@@ -311,6 +335,8 @@ const de: Work[] = [
     shot: '/work/mitrisa-velo.webp',
     summary:
       'Eine klare One-Page-Website für eine Logopädin – durchgängig in React gestaltet und gebaut, als Projekt für Familie & Freunde.',
+    seoDescription:
+      'Eine klare One-Page-Website für eine Logopädin – durchgängig in React gestaltet und gebaut. Eine WyroTech-Case-Study.',
     outcome: 'Die Praxis einer Logopädin online – eine einfache Seite, die ihre Leistungen zeigt und Kontakt ermöglicht.',
     problem:
       'Eine Logopädin brauchte einen einfachen, vertrauenswürdigen Webauftritt: einen Ort, der ihre Leistungen erklärt und Kontakt ermöglicht.',

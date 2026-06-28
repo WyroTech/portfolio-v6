@@ -4,40 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <title>Web Developer Deggendorf · B2B Web Apps &amp; SaaS | WyroTech</title>
-    <meta
-      name="description"
-      content="Andreas Wyrobek — web developer in Deggendorf. I design &amp; build B2B web apps, dashboards, SaaS &amp; design systems in Angular, React, .NET &amp; Azure. DE/EN."
-    />
-
-    <!-- Open Graph: static home fallback; per-route values are set by Seo.tsx -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="WyroTech" />
-    <meta property="og:title" content="Web Developer Deggendorf · B2B Web Apps & SaaS | WyroTech" />
-    <meta
-      property="og:description"
-      content="Andreas Wyrobek — web developer in Deggendorf. I design &amp; build B2B web apps, dashboards, SaaS &amp; design systems in Angular, React, .NET &amp; Azure. DE/EN."
-    />
-    <meta property="og:url" content="https://wyro.tech/" />
-    <meta property="og:image" content="https://wyro.tech/og.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Andreas Wyrobek — web developer in Deggendorf (B2B web apps, dashboards & SaaS)" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="de_DE" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Web Developer Deggendorf · B2B Web Apps & SaaS | WyroTech" />
-    <meta
-      name="twitter:description"
-      content="Andreas Wyrobek — web developer in Deggendorf. I design &amp; build B2B web apps, dashboards, SaaS &amp; design systems in Angular, React, .NET &amp; Azure. DE/EN."
-    />
-    <meta name="twitter:image" content="https://wyro.tech/og.jpg" />
-    <meta name="twitter:image:alt" content="Andreas Wyrobek — web developer in Deggendorf (B2B web apps, dashboards & SaaS)" />
-
     <meta name="theme-color" content="#000000" />
+
+    <!-- Per-route head — title, description, canonical, hreflang, OG/Twitter and
+         JSON-LD — is rendered by Seo.tsx via Unhead. At build time the prerender
+         step injects each route's tags below; in dev Unhead sets them client-side. -->
+    <!--app-head-->
   </head>
   <body>
     <div id="root"></div>

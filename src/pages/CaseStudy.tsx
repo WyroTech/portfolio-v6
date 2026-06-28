@@ -6,7 +6,8 @@ import { loc } from '../i18n/localize'
 import { ui } from '../i18n/ui'
 import Reveal from '../components/ui/Reveal'
 import Visual from '../components/ui/Visual'
-import Seo from '../components/Seo'
+import Seo, { SITE_URL, OG_IMAGE } from '../components/Seo'
+import { site } from '../data/site'
 import NotFound from './NotFound'
 import './CaseStudy.scss'
 
@@ -22,14 +23,46 @@ export default function CaseStudy() {
   const idx = list.findIndex((w) => w.slug === work.slug)
   const next = list[(idx + 1) % list.length]
 
+  const homeUrl = lang === 'de' ? `${SITE_URL}/de` : SITE_URL
+  const caseUrl = `${homeUrl}/work/${work.slug}`
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: lang === 'de' ? 'Start' : 'Home', item: homeUrl },
+          { '@type': 'ListItem', position: 2, name: t.nav.work, item: `${homeUrl}#work` },
+          { '@type': 'ListItem', position: 3, name: work.title, item: caseUrl },
+        ],
+      },
+      {
+        '@type': 'CreativeWork',
+        name: work.title,
+        description: work.summary,
+        url: caseUrl,
+        image: work.shot ? `${SITE_URL}${work.shot}` : OG_IMAGE,
+        inLanguage: lang,
+        dateCreated: work.year.slice(0, 4),
+        keywords: work.stack.join(', '),
+        about: work.category,
+        author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: site.person },
+        publisher: { '@id': `${SITE_URL}/#service` },
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+        ...(work.link ? { sameAs: work.link.href } : {}),
+      },
+    ],
+  }
+
   return (
     <main id="main" className="case">
       <Seo
-        title={`${work.title} — WyroTech`}
-        description={work.summary}
+        title={`${work.title} | WyroTech`}
+        description={work.seoDescription ?? work.summary}
         path={`/work/${work.slug}`}
         lang={lang}
         ogType="article"
+        jsonLd={jsonLd}
       />
       <article>
         <header className="case__hero container">

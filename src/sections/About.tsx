@@ -127,7 +127,19 @@ export default function About() {
 
         <div className="about__side">
           <div className="about__portrait" ref={portraitRef}>
-            <div className="about__photo" role="img" aria-label={`${site.person} — ${t.role}`}>
+            {/* Real, crawlable base image (alt + Google Images). The opaque
+                fractured slices below sit on top of it, so it's not visible —
+                it exists for semantics/indexing. */}
+            <img
+              className="about__photo-base"
+              src="/portrait.webp"
+              alt={`${site.person} — ${t.role}`}
+              loading="lazy"
+              decoding="async"
+              width={1000}
+              height={1000}
+            />
+            <div className="about__photo" aria-hidden="true">
               <span className="about__slice" />
               <span className="about__slice" />
               <span className="about__slice" />
